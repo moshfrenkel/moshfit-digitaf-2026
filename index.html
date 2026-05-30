@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>חדר כושר ת"א לקטנטנים | מושפיט × דיגיטף</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;900&family=Secular+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #2BBCB3;
+      --teal-light: #E6F7F6;
+      --teal-mid: #A8DDD9;
+      --orange: #F4A261;
+      --orange-light: #FEF3EA;
+      --bg: #FFFFFF;
+      --bg2: #F7FBFB;
+      --card: #FFFFFF;
+      --border: #DFF0EE;
+      --text: #1A1A1A;
+      --text2: #444;
+      --muted: #777;
+      --success: #27AE60;
+      --success-light: #E6F7ED;
+      --warning-bg: #FEF9EC;
+      --warning-border: #F6CC6D;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Heebo', sans-serif;
+      overflow: hidden;
+      direction: rtl;
+    }
+
+    /* ===== SCREENS ===== */
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
+      background: var(--bg);
+    }
+    .screen.hidden { transform: translateY(60px); opacity: 0; pointer-events: none; }
+
+    /* ===== WELCOME ===== */
+    #screen-welcome {
+      justify-content: center;
+      align-items: center;
+      padding: 28px 24px 36px;
+      background: linear-gradient(165deg, #E6F7F6 0%, #FFFFFF 55%);
+      text-align: center;
+      gap: 0;
+    }
+    .welcome-mascot {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 4px 14px rgba(43,188,179,0.25));
+      animation: floatBounce 2.4s ease-in-out infinite;
+    }
+    @keyframes floatBounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+    .welcome-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .welcome-title {
+      font-family: 'Secular One', sans-serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .welcome-title span { color: var(--teal); }
+    .welcome-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .mode-section { width: 100%; max-width: 320px; margin-bottom: 22px; }
+    .mode-label { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+    .mode-toggle {
+      display: flex;
+      background: var(--bg2);
+      border-radius: 50px;
+      padding: 4px;
+      gap: 4px;
+      border: 1.5px solid var(--border);
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 11px 14px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      background: transparent;
+      color: var(--muted);
+    }
+    .mode-btn.active { background: var(--teal); color: #fff; box-shadow: 0 2px 10px rgba(43,188,179,0.3); }
+    .mode-btn.active.competitive { background: var(--orange); box-shadow: 0 2px 10px rgba(244,162,97,0.3); }
+    .mode-desc { font-size: 13px; color: var(--muted); margin-top: 9px; line-height: 1.5; }
+
+    .start-btn {
+      width: 100%;
+      max-width: 320px;
+      padding: 17px;
+      border: none;
+      border-radius: 16px;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 19px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.15s;
+      box-shadow: 0 4px 18px rgba(244,162,97,0.4);
+    }
+    .start-btn:active { transform: scale(0.97); }
+
+    .digitaf-credit {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #bbb;
+    }
+    .digitaf-credit strong { color: var(--teal); }
+
+    /* ===== MAP ===== */
+    #screen-map { background: var(--bg2); }
+
+    .map-header {
+      padding: 48px 18px 14px;
+      background: linear-gradient(180deg, var(--teal-light) 0%, var(--bg2) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .map-header h1 {
+      font-family: 'Secular One', sans-serif;
+      font-size: 22px;
+      color: var(--text);
+    }
+    .map-header p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+    .progress-bar-wrap { margin-top: 10px; height: 5px; background: var(--border); border-radius: 5px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--teal); border-radius: 5px; transition: width 0.4s ease; }
+
+    .station-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 12px; }
+
+    .station-card {
+      position: relative;
+      border-radius: 14px;
+      border: 2.5px solid var(--teal-mid);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      background: var(--teal-light);
+      box-shadow: 0 2px 10px rgba(43,188,179,0.12);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .station-card.completed { border-color: var(--success); }
+    .station-card.completed::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(39,174,96,0.15);
+    }
+
+    @keyframes cardTap {
+      0%   { transform: scale(1) rotate(0deg); }
+      25%  { transform: scale(0.88) rotate(-2.5deg); }
+      60%  { transform: scale(1.07) rotate(1.5deg); }
+      80%  { transform: scale(0.97) rotate(-0.5deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .station-card.tap-animate { animation: cardTap 0.38s cubic-bezier(.36,.07,.19,.97); }
+
+    .station-img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 8px;
+      display: block;
+    }
+    .station-card.completed .station-img { opacity: 0.6; }
+
+    .station-name {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(20,20,20,0.62);
+      color: #fff;
+      font-size: 10.5px; font-weight: 700;
+      text-align: center;
+      padding: 4px 3px 5px;
+      line-height: 1.2;
+    }
+    .done-badge {
+      position: absolute;
+      top: 5px; left: 5px;
+      width: 20px; height: 20px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #fff; font-weight: 700;
+      z-index: 2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .map-footer { padding: 10px 14px 32px; display: flex; flex-direction: column; gap: 10px; }
+    .finish-btn {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid var(--teal);
+      border-radius: 14px;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .finish-btn:active { background: var(--teal-mid); }
+    .whatsapp-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px;
+      background: #25D366;
+      border-radius: 14px;
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ===== STATION DETAIL ===== */
+    #screen-station { background: var(--bg); }
+
+    .station-header {
+      padding: 48px 18px 18px;
+      background: linear-gradient(175deg, var(--teal-light) 0%, #fff 100%);
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: none; border: none;
+      color: var(--teal); font-family: 'Heebo', sans-serif;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; margin-bottom: 14px;
+      text-align: right;
+    }
+    .station-detail-img {
+      width: 120px; height: 88px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 10px rgba(43,188,179,0.2));
+    }
+    .station-detail-name {
+      font-family: 'Secular One', sans-serif;
+      font-size: 26px; color: var(--text);
+    }
+    .station-detail-desc { font-size: 14px; color: var(--muted); margin-top: 3px; }
+
+    .station-body { padding: 16px 16px 32px; display: flex; flex-direction: column; gap: 12px; }
+
+    .mode-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 13px;
+      border-radius: 50px;
+      font-size: 13px; font-weight: 700;
+      align-self: flex-start;
+    }
+    .mode-badge.regular { background: var(--teal-light); color: var(--teal); }
+    .mode-badge.competitive { background: var(--orange-light); color: var(--orange); }
+
+    .safety-card {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #7A5C00;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .safety-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    .instructions-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .instructions-card h3 { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .instructions-card p { font-size: 16px; line-height: 1.65; color: var(--text); }
+
+    .challenge-card {
+      background: var(--orange-light);
+      border: 1px solid rgba(244,162,97,0.4);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #6B3D0C;
+    }
+    .challenge-card strong { color: var(--orange); display: block; font-size: 12px; margin-bottom: 4px; }
+
+    .parent-tip {
+      background: var(--teal-light);
+      border-right: 3px solid var(--teal);
+      border-radius: 0 12px 12px 0;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+    .parent-tip strong { color: var(--teal); font-size: 12px; display: block; margin-bottom: 3px; }
+
+    /* ===== TIMERS ===== */
+    .timer-section { text-align: center; padding: 8px 0 4px; }
+
+    .timer-circle {
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      background: var(--bg2);
+      margin: 0 auto 18px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative;
+      border: 3px solid var(--border);
+    }
+    .timer-circle.running { border-color: var(--teal); box-shadow: 0 0 20px rgba(43,188,179,0.2); }
+    .timer-circle.running-competitive { border-color: var(--orange); box-shadow: 0 0 20px rgba(244,162,97,0.2); }
+
+    .timer-svg { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); transform: rotate(-90deg); }
+    .timer-track { fill: none; stroke: var(--border); stroke-width: 3; }
+    .timer-progress { fill: none; stroke: var(--teal); stroke-width: 3; stroke-linecap: round; }
+    .timer-progress.competitive { stroke: var(--orange); }
+
+    .timer-time { font-family: 'Secular One', sans-serif; font-size: 40px; line-height: 1; color: var(--text); }
+    .timer-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .dual-timer { display: flex; gap: 10px; margin-bottom: 16px; }
+    .player-timer {
+      flex: 1; background: var(--bg2);
+      border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 14px 10px; text-align: center;
+    }
+    .player-timer.active-player { border-color: var(--teal); background: var(--teal-light); }
+    .player-timer .player-label { font-size: 13px; color: var(--muted); margin-bottom: 5px; }
+    .player-timer .player-time { font-family: 'Secular One', sans-serif; font-size: 28px; color: var(--text); }
+    .player-timer .player-result { font-size: 12px; margin-top: 4px; color: var(--text2); }
+
+    .rep-section { text-align: center; margin-bottom: 16px; }
+    .rep-display { font-family: 'Secular One', sans-serif; font-size: 72px; line-height: 1; color: var(--teal); }
+    .rep-label { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+    .rep-buttons { display: flex; gap: 12px; justify-content: center; }
+    .rep-btn { width: 62px; height: 62px; border-radius: 50%; border: none; font-size: 26px; font-weight: 700; cursor: pointer; transition: transform 0.1s; }
+    .rep-btn:active { transform: scale(0.9); }
+    .rep-plus { background: var(--teal); color: #fff; }
+    .rep-minus { background: var(--border); color: var(--text); }
+
+    .timer-controls { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    .primary-btn {
+      width: 100%; max-width: 280px;
+      padding: 15px; border: none;
+      border-radius: 14px;
+      background: var(--teal); color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 17px; font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.15s;
+      box-shadow: 0 3px 14px rgba(43,188,179,0.3);
+    }
+    .primary-btn:active { transform: scale(0.97); }
+    .primary-btn.orange { background: var(--orange); box-shadow: 0 3px 14px rgba(244,162,97,0.3); }
+    .primary-btn.done { background: var(--success); box-shadow: 0 3px 14px rgba(39,174,96,0.3); }
+    .secondary-btn {
+      background: none; border: 1.5px solid var(--border);
+      border-radius: 12px; color: var(--muted);
+      font-family: 'Heebo', sans-serif;
+      font-size: 14px; padding: 9px 22px; cursor: pointer;
+    }
+
+    /* ===== CELEBRATION ===== */
+    #overlay-celebration {
+      position: fixed; inset: 0;
+      background: rgba(255,255,255,0.93);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 100;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    #overlay-celebration.show { opacity: 1; pointer-events: all; }
+
+    .celebration-emoji { font-size: 80px; margin-bottom: 14px; animation: bounceIn 0.45s cubic-bezier(.68,-.55,.27,1.55); }
+    @keyframes bounceIn { 0% { transform: scale(0); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+    .celebration-title {
+      font-family: 'Secular One', sans-serif;
+      font-size: 30px; color: var(--text);
+      text-align: center; margin-bottom: 6px;
+    }
+    .celebration-msg {
+      font-size: 17px; color: var(--teal);
+      text-align: center; margin-bottom: 28px;
+      padding: 0 28px;
+    }
+
+    .confetti-container { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 99; }
+    .confetti-piece {
+      position: absolute; width: 8px; height: 8px;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== CERTIFICATE ===== */
+    #screen-certificate {
+      background: var(--bg2);
+      align-items: center;
+      padding: 0 0 32px;
+    }
+    .cert-header-bar {
+      width: 100%;
+      background: linear-gradient(135deg, var(--teal), #1A9E96);
+      padding: 48px 20px 20px;
+      text-align: center;
+    }
+    .cert-header-bar h2 {
+      font-family: 'Secular One', sans-serif;
+      font-size: 24px; color: #fff; margin-bottom: 4px;
+    }
+    .cert-header-bar p { font-size: 14px; color: rgba(255,255,255,0.8); }
+
+    .camera-wrap {
+      width: calc(100% - 32px); max-width: 340px;
+      aspect-ratio: 3/4;
+      background: var(--border);
+      border-radius: 20px; overflow: hidden;
+      position: relative;
+      margin: 20px auto 16px;
+      border: 2px solid var(--teal-mid);
+      box-shadow: 0 4px 20px rgba(43,188,179,0.15);
+    }
+    #camera-preview { width: 100%; height: 100%; object-fit: cover; }
+    #cert-canvas { display: none; }
+
+    .cert-overlay {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, transparent 50%);
+    }
+    .cert-overlay-text { font-family: 'Secular One', sans-serif; font-size: 16px; text-align: center; color: #fff; line-height: 1.4; }
+    .cert-overlay-sub { font-size: 12px; color: var(--teal-mid); text-align: center; margin-top: 3px; }
+
+    .countdown-flash {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Secular One', sans-serif;
+      font-size: 110px; color: white;
+      opacity: 0; transition: opacity 0.15s;
+    }
+
+    .cert-actions { display: flex; flex-direction: column; gap: 10px; width: calc(100% - 32px); max-width: 340px; margin: 0 auto; }
+    .capture-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 15px;
+      background: var(--orange); border: none; border-radius: 14px;
+      color: #fff; font-family: 'Heebo', sans-serif;
+      font-size: 17px; font-weight: 900; cursor: pointer;
+      box-shadow: 0 3px 14px rgba(244,162,97,0.35);
+    }
+    .save-btn {
+      padding: 13px; background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 14px; color: var(--text);
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      text-align: center; text-decoration: none;
+      display: block;
+    }
+
+    /* Podium guide overlay on camera preview */
+    #cert-bg-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      width: 100%;
+      height: 42%;
+      object-fit: contain;
+      object-position: bottom center;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 3;
+    }
+    /* Guide text at top of camera */
+    #camera-guide-text {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+      color: #fff;
+      text-align: center;
+      padding: 10px 12px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      z-index: 4;
+      pointer-events: none;
+    }
+    /* Target crosshair for child position */
+    #child-target {
+      position: absolute;
+      top: 10%; left: 50%;
+      transform: translateX(-50%);
+      width: 70px; height: 70px;
+      border: 3px dashed rgba(255,255,255,0.7);
+      border-radius: 50%;
+      z-index: 4;
+      pointer-events: none;
+      animation: targetPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes targetPulse {
+      0%,100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+    }
+
+    /* Camera flip button */
+    #camera-flip-btn {
+      position: absolute;
+      top: 10px; left: 10px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.6);
+      color: #fff;
+      font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    #camera-flip-btn:active { background: rgba(43,188,179,0.7); }
+
+    /* Composed result image after capture */
+    .cert-result-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .share-btn {
+      width: 100%;
+      padding: 14px; border: none;
+      border-radius: 14px;
+      background: #25D366; color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+
+    .result-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 360px) {
+      .station-grid { gap: 8px; padding: 12px; }
+      .station-card { padding: 10px 8px; min-height: 96px; }
+      .station-img { width: 60px; height: 44px; }
+      .station-name { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="confetti-container" id="confetti-container"></div>
+
+<!-- CELEBRATION -->
+<div id="overlay-celebration">
+  <div class="celebration-emoji" id="cel-emoji">🏆</div>
+  <div class="celebration-title" id="cel-title">כל הכבוד!</div>
+  <div class="celebration-msg" id="cel-msg">תחנה אחת יותר חזקים.</div>
+  <button class="primary-btn" style="max-width:240px" onclick="closeCelebration()">לתחנה הבאה ←</button>
+</div>
+
+<!-- WELCOME -->
+<div class="screen" id="screen-welcome">
+  <img class="welcome-mascot" src="images/sprint.png" alt="מושפיטר">
+  <div class="welcome-brand">מושפיט × דיגיטף 2026</div>
+  <div class="welcome-title">בואו <span>לשחק</span> איתנו</div>
+  <div class="welcome-sub">9 תחנות פעילות, המון כיף, ותעודה בסוף.</div>
+
+  <div class="mode-section">
+    <div class="mode-label">בחרו את המצב שלכם</div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btn-regular" onclick="setMode('regular')">😊 שגרה</button>
+      <button class="mode-btn competitive" id="btn-competitive" onclick="setMode('competitive')">🔥 תחרות</button>
+    </div>
+    <p class="mode-desc" id="mode-desc">כל תחנה עם הוראות פשוטות לכל הגילאים</p>
+  </div>
+
+  <button class="start-btn" onclick="goToMap()">יאללה, מתחילים 💪</button>
+  <div class="digitaf-credit">פעילות מושפיט ב<strong>דיגיטף</strong> | עיריית תל אביב-יפו</div>
+</div>
+
+<!-- MAP -->
+<div class="screen hidden" id="screen-map">
+  <div class="map-header">
+    <button class="back-btn" onclick="showScreen('screen-welcome')" style="margin-bottom:10px">← מסך הבית</button>
+    <h1>איפה רוצים להתחיל?</h1>
+    <p id="map-progress-text">0 מתוך 9 תחנות הושלמו</p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+  <div class="station-grid" id="station-grid"></div>
+  <div class="map-footer">
+    <button class="finish-btn" onclick="goToCertificate()">📸 סיימנו — צלמו תעודה!</button>
+    <a class="whatsapp-btn" href="https://chat.whatsapp.com/Jg2uU0inKjW58xVdXc2RAE" target="_blank">
+      💬 הצטרפו לקהילת משפחה בתנועה
+    </a>
+  </div>
+</div>
+
+<!-- STATION -->
+<div class="screen hidden" id="screen-station">
+  <div class="station-header">
+    <button class="back-btn" onclick="goToMap()">← חזרה לתחנות</button>
+    <div id="detail-icon"></div>
+    <div class="station-detail-name" id="detail-name">ספרינט</div>
+    <div class="station-detail-desc" id="detail-desc"></div>
+  </div>
+
+  <div class="station-body">
+    <div class="mode-badge regular" id="mode-badge-display">😊 מצב שגרה</div>
+
+    <div class="safety-card hidden" id="safety-card">
+      <span class="safety-icon">⚠️</span>
+      <span id="safety-text"></span>
+    </div>
+
+    <div class="instructions-card">
+      <h3>איך עושים</h3>
+      <p id="station-instructions"></p>
+    </div>
+
+    <div class="challenge-card hidden" id="challenge-card">
+      <strong>🔥 אתגר התחרות</strong>
+      <span id="challenge-text"></span>
+    </div>
+
+    <!-- Stopwatch -->
+    <div id="timer-stopwatch" class="timer-section" style="display:none">
+      <div class="timer-circle" id="sw-circle">
+        <div class="timer-time" id="sw-display">00:00</div>
+        <div class="timer-label" id="sw-label">לחצו להתחיל</div>
+      </div>
+      <div class="dual-timer" id="dual-timer" style="display:none">
+        <div class="player-timer" id="pt-child">
+          <div class="player-label">ילד 🧒</div>
+          <div class="player-time" id="pt-child-time">--:--</div>
+          <div class="player-result" id="pt-child-result"></div>
+        </div>
+        <div class="player-timer" id="pt-parent">
+          <div class="player-label">הורה 🧑</div>
+          <div class="player-time" id="pt-parent-time">--:--</div>
+          <div class="player-result" id="pt-parent-result"></div>
+        </div>
+      </div>
+      <div class="timer-controls">
+        <button class="primary-btn" id="sw-btn" onclick="handleStopwatch()">▶ התחל ריצה</button>
+        <button class="primary-btn done hidden" id="sw-done-btn" onclick="completeStation()">✓ סיימנו!</button>
+      </div>
+    </div>
+
+    <!-- Countdown -->
+    <div id="timer-countdown" class="timer-section" style="display:none">
+      <div class="timer-circle" id="cd-circle">
+        <svg class="timer-svg" viewBox="0 0 178 178">
+          <circle class="timer-track" cx="89" cy="89" r="82"/>
+          <circle class="timer-progress" id="cd-progress" cx="89" cy="89" r="82"
+            stroke-dasharray="515" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-time" id="cd-display">60</div>
+        <div class="timer-label" id="cd-label">שניות</div>
+      </div>
+      <div class="timer-controls">
+        <button class="primary-btn" id="cd-btn" onclick="handleCountdown()">▶ התחל</button>
+        <button class="primary-btn done hidden" id="cd-done-btn" onclick="completeStation()">✓ סיימנו!</button>
+        <button class="secondary-btn" onclick="completeStation()">דלגו — סיימנו ידנית</button>
+      </div>
+    </div>
+
+    <!-- Reps -->
+    <div id="timer-reps" class="timer-section" style="display:none">
+      <div class="rep-section">
+        <div class="rep-display" id="rep-count">0</div>
+        <div class="rep-label" id="rep-label">נקודות</div>
+        <div class="rep-buttons">
+          <button class="rep-btn rep-minus" onclick="changeRep(-1)">−</button>
+          <button class="rep-btn rep-plus" onclick="changeRep(1)">+</button>
+        </div>
+      </div>
+      <div class="timer-controls" style="margin-top:14px">
+        <button class="primary-btn done" onclick="completeStation()">✓ סיימנו!</button>
+      </div>
+    </div>
+
+    <!-- Free -->
+    <div id="timer-free" class="timer-section" style="display:none">
+      <div style="font-size:54px;text-align:center;padding:16px 0;">🎨</div>
+      <div class="timer-controls">
+        <button class="primary-btn done" onclick="completeStation()">✓ סיימנו!</button>
+      </div>
+    </div>
+
+    <div class="parent-tip" id="parent-tip-box">
+      <strong>💡 טיפ להורה</strong>
+      <span id="parent-tip-text"></span>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATE -->
+<div class="screen hidden" id="screen-certificate">
+  <div class="cert-header-bar">
+    <h2 id="cert-header-title">🏆 תעודת גבורה</h2>
+    <p id="cert-header-sub">צלמו את הילד על שלב מספר 1</p>
+  </div>
+  <div class="camera-wrap">
+    <video id="camera-preview" autoplay playsinline muted></video>
+    <button id="camera-flip-btn" onclick="flipCamera()" title="החלף מצלמה">🔄</button>
+    <img id="cert-bg-overlay" src="images/podium.png" alt="">
+    <canvas id="cert-canvas"></canvas>
+    <div id="camera-guide-text" id="cert-live-overlay">
+      כוונו את הטלפון כך שרגלי הילד<br>יהיו על שלב מספר 1
+    </div>
+    <div id="child-target"></div>
+    <div class="countdown-flash" id="countdown-flash"></div>
+    <img id="cert-result-img" class="cert-result-img hidden" alt="תעודה">
+  </div>
+  <div class="cert-actions">
+    <!-- State 1: camera not open yet -->
+    <div id="open-camera-actions">
+      <button class="capture-btn" id="open-camera-btn" onclick="openCamera()">📷 פתחו מצלמה</button>
+    </div>
+    <!-- State 2: camera open, ready to shoot -->
+    <div id="pre-capture-actions" class="hidden">
+      <button class="capture-btn" id="capture-btn" onclick="startCapture()">📸 צלמו!</button>
+    </div>
+    <!-- State 3: after capture -->
+    <div id="post-capture-actions" class="result-actions hidden">
+      <a class="primary-btn done" id="save-btn" download="moshfit-digitaf-2026.png"
+        style="text-align:center;text-decoration:none;display:block;padding:15px;border-radius:14px;font-family:'Heebo',sans-serif;font-size:17px;font-weight:900;color:#fff">
+        💾 שמרו לגלריה
+      </a>
+      <button class="share-btn" onclick="sharePhoto()">📤 שלחו לחברים</button>
+      <button class="secondary-btn" onclick="retakePhoto()">↺ צלמו שוב</button>
+    </div>
+    <button class="secondary-btn" style="margin-top:2px" onclick="goToMap()">← חזרה לתחנות</button>
+  </div>
+</div>
+
+<script>
+// ==============================
+// STATIONS DATA (WRITER + IVRI + GITI approved)
+// ==============================
+const STATIONS = [
+  {
+    id: 'sprint',
+    image: 'images/sprint.png',
+    name: 'ספרינט',
+    desc: 'ריצה מהירה מקצה לקצה',
+    timerType: 'stopwatch',
+    safety: null,
+    instructions: {
+      regular: 'מתחילים מהקו. כשנגיד קדימה, רצים עד הקו הבא. חוזרים בהליכה ועושים עוד סיבוב. כל אחד בקצב שלו.',
+      competitive: 'כל אחד בוחר שותף לריצה. יוצאים ביחד בספירה לאחור. מי שמגיע ראשון לקו, מנצח את הסיבוב. עושים 3 סיבובים ורואים מי ניצח הכי הרבה.'
+    },
+    challenge: 'רוצים אתגר? נסו לרוץ אחורה!',
+    tip: 'ילד קטן? קחו אותו על הכתפיים ורוצו ביחד.'
+  },
+  {
+    id: 'boxjump',
+    image: 'images/boxjump.png',
+    name: 'בוקס ג\'אמפ',
+    desc: 'עולים למעלה וקופצים למטה',
+    timerType: 'free',
+    safety: 'גיל מתחת לשנתיים וחצי — קופסה נמוכה בלבד, הורה אוחז ביד.',
+    instructions: {
+      regular: 'עולים על הקופסה בזהירות, עומדים רגע, וקופצים קדימה לאזור הנחיתה. נוחתים על שתי רגליים ומחייכים. חוזרים על זה כמה פעמים שרוצים.',
+      competitive: 'כל אחד קופץ ומנסה לנחות כמה שיותר רחוק מהקופסה. שמים סמן במקום הנחיתה. מי שקופץ הכי רחוק, הוא האלוף.'
+    },
+    challenge: 'קפצו, נחתו, ובלי לזוז מהמקום שנחתתם!',
+    tip: 'עמדו ליד ילד קטן עם יד פתוחה, לא אחוזה, בגובה המותניים.'
+  },
+  {
+    id: 'beam',
+    image: 'images/beam.png',
+    name: 'קורה',
+    desc: 'איזון מקצה לקצה',
+    timerType: 'free',
+    safety: null,
+    instructions: {
+      regular: 'עוברים לאט מקצה לקצה על הקורה, ידיים בצדדים לאיזון. אם נופלים, חוזרים לנקודה שנפלו ממנה ומנסים שוב.',
+      competitive: 'כמה שניות מחזיקים על הקורה בלי לרדת? ספרו בקול רם ורשמו את השיא. עכשיו תנסו לשבור אותו.'
+    },
+    challenge: 'נסו לעבור את כל הקורה עם עיניים עצומות חצי דרך!',
+    tip: 'אל תאחזו ביד, הניחו יד על הגב בלבד — שהגוף ילמד איזון לבד.'
+  },
+  {
+    id: 'football',
+    image: 'images/football.png',
+    name: 'כדורגל',
+    desc: 'בעיטות לשער',
+    timerType: 'reps',
+    repLabel: 'שערים',
+    safety: null,
+    instructions: {
+      regular: 'מניחים את הכדור על הנקודה, ובועטים לשער. כל אחד בוחר מאיפה לבעוט, כמה שיותר קרוב אין בעיה. חוזרים כמה פעמים שרוצים.',
+      competitive: 'כל אחד מקבל 5 בעיטות. כל כדור שנכנס = נקודה. מי שמסיים עם יותר נקודות, הוא החלוץ של הסיבוב.'
+    },
+    challenge: 'נסו לבעוט רק עם הרגל הפחות חזקה שלכם!',
+    tip: 'הורה בשער ומניח לעבור? זה לא רמאות, זה כיף.'
+  },
+  {
+    id: 'basketball',
+    image: 'images/basketball.png',
+    name: 'כדורסל',
+    desc: 'זריקות לסל',
+    timerType: 'reps',
+    repLabel: 'כניסות',
+    safety: null,
+    instructions: {
+      regular: 'בוחרים נקודה לעמוד בה, זורקים לסל ומנסים להכניס. כל אחד בוחר את המרחק שנוח לו, אין סיבה לסבול.',
+      competitive: 'עשרה ניסיונות לכל אחד. כל כניסה = נקודה. מנצח מי שמכניס יותר. אפשר לעשות סיבובים חוזרים.'
+    },
+    challenge: 'זרקו בלי להסתכל לסל, רק מתוך תחושה!',
+    tip: 'ילד מאוד קטן? הרימו אותו קרוב לסל ותנו לו להטיל.'
+  },
+  {
+    id: 'slambowl',
+    image: 'images/slambowl.png',
+    name: 'סלאם בול',
+    desc: 'זורקים את הכדור חזק לרצפה',
+    timerType: 'countdown',
+    duration: 30,
+    safety: 'לא מתאים לגיל מתחת לשלוש. ילדים קטנים — מניחים את הכדור בעדינות.',
+    instructions: {
+      regular: 'לוקחים את הכדור, מרימים עד גובה החזה, וזורקים אותו חזק לרצפה. הכדור קופץ בחזרה, תופסים אותו ועושים שוב.',
+      competitive: 'כמה זריקות אפשר לעשות ב-30 שניות? ספרו ביחד בקול רם. מנסים לשבור את השיא בסיבוב הבא.'
+    },
+    challenge: 'זרקו, תפסו, ואל תתנו לכדור לנגוע ברצפה פעמיים!',
+    tip: 'ילד קטן? תנו לו לזרוק מגובה הבטן, זה מספיק חזק בשבילו.'
+  },
+  {
+    id: 'creative',
+    image: 'images/creative.png',
+    name: 'אזור יצירתי',
+    desc: 'כל מה שעולה בראש',
+    timerType: 'free',
+    safety: 'בדקו שאין חפצים קטנים לילדים מתחת לגיל שלוש.',
+    instructions: {
+      regular: 'כאן אין חוקים. יש כלים, יש מרחב. אפשר לבנות, לסדר, לזרוק, לאזן, לשחק כמו שמרגיש נכון לכם עכשיו.',
+      competitive: 'תוך 2 דקות, בנו מגדל או מסלול מהחומרים באזור. מי שבנה הכי גבוה, הכי יצירתי, הכי מגניב, הוא המנצח.'
+    },
+    challenge: 'בנו משהו שאף אחד לא יכול לנחש מה הוא!',
+    tip: 'האזור הזה הוא שלכם. אם ילד יושב ומסדר קוביות בשקט, זה גם פעילות.'
+  },
+  {
+    id: 'bench',
+    image: 'images/bench.png',
+    name: 'בנץ פרס',
+    desc: 'לוחצים ביחד',
+    timerType: 'reps',
+    repLabel: 'חזרות',
+    safety: 'מתאים לגיל 5 ומעלה. הורה עומד ליד בכל עת.',
+    instructions: {
+      regular: 'שוכבים על הספסל, אוחזים בקצוות, ודוחפים את הגוף מעלה ומטה בקצב רגוע. הורה עומד ליד הראש. ספרו 5 חזרות ביחד בקול רם.',
+      competitive: 'כמה חזרות אפשר לעשות לפני שמפסיקים? ספרו בקול. כשמרגישים שמספיק, מפסיקים. השיא האישי שלכם הוא המטרה.'
+    },
+    challenge: '5 חזרות, 3 שניות לכל חזרה, בקצב שמישהו אחר מכתיב לכם!',
+    tip: 'ילד קטן על הספסל? הניחו ידיים שלו על ידיים שלכם ועשו ביחד.'
+  },
+  {
+    id: 'roll',
+    image: 'images/roll.png',
+    name: 'גלגול',
+    desc: 'גלגולים קדימה על המזרן',
+    timerType: 'reps',
+    repLabel: 'גלגולים',
+    safety: 'גלגול על הכתפיים בלבד — לא על הצוואר. מתחת לגיל שנתיים וחצי — תמיכה מלאה של הורה.',
+    instructions: {
+      regular: 'מתחילים בעמידה ליד תחילת המזרן, כורעים, מניחים ידיים, ומתגלגלים קדימה בעדינות. קמים בסוף ומחייכים. חוזרים שוב.',
+      competitive: 'כמה גלגולים אפשר לעשות ברצף בלי לעצור? ספרו ביחד. אחרי כל גלגול ממשיכים ישר לבא.'
+    },
+    challenge: 'גלגלו ואז קומו ישר לעמידה, בלי לעזור עם הידיים!',
+    tip: 'ילד קטן מאוד? שכבו ביחד על המזרן, הניחו ידיים וגלגלו עם הגוף שלכם מתחת לידיים שלהם.'
+  }
+];
+
+const CELEBRATIONS = [
+  { emoji: '🏆', title: 'כל הכבוד!', msg: 'תחנה אחת יותר חזקים.' },
+  { emoji: '💪', title: 'ניצחתם!', msg: 'קדימה לתחנה הבאה.' },
+  { emoji: '⭐', title: 'ממש יפה.', msg: 'כיף לראות אתכם זזים.' },
+  { emoji: '🔥', title: 'עוד תחנה!', msg: 'לא מפסיקים.' },
+  { emoji: '🎉', title: 'אתם אש.', msg: 'ממשיכים.' },
+  { emoji: '🌟', title: 'מדהים.', msg: 'מושפיט גאה בכם.' }
+];
+
+// ==============================
+// STATE
+// ==============================
+let state = {
+  mode: 'regular',
+  currentStationIdx: null,
+  completed: new Set(),
+  timerRunning: false,
+  timerInterval: null,
+  timerElapsed: 0,
+  countdownRemaining: 60,
+  countdownTotal: 60,
+  swPhase: 'idle',
+  childTime: 0,
+  parentTime: 0,
+  reps: 0,
+  stream: null
+};
+let cdAnimFrame = null;
+let cdStartTime = null;
+
+// ==============================
+// INIT
+// ==============================
+window.onload = () => { renderStationGrid(); };
+
+// ==============================
+// MODE
+// ==============================
+function setMode(m) {
+  state.mode = m;
+  document.getElementById('btn-regular').classList.toggle('active', m === 'regular');
+  document.getElementById('btn-competitive').classList.toggle('active', m === 'competitive');
+  document.getElementById('mode-desc').textContent = m === 'regular'
+    ? 'כל תחנה עם הוראות פשוטות לכל הגילאים'
+    : 'מי מצליח יותר? קצת אתגר, הרבה צחוקים';
+}
+
+// ==============================
+// SCREENS
+// ==============================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  window.scrollTo(0, 0);
+  document.getElementById(id).scrollTop = 0;
+}
+
+function goToMap() {
+  stopAllTimers();
+  showScreen('screen-map');
+  updateProgress();
+}
+
+function goToCertificate() {
+  showScreen('screen-certificate');
+  // Reset to initial state — camera opens only on user tap
+  document.getElementById('open-camera-actions').classList.remove('hidden');
+  document.getElementById('pre-capture-actions').classList.add('hidden');
+  document.getElementById('post-capture-actions').classList.add('hidden');
+  document.getElementById('cert-result-img').classList.add('hidden');
+  document.getElementById('camera-preview').style.opacity = '1';
+  document.getElementById('cert-bg-overlay').style.display = '';
+  document.getElementById('camera-guide-text').style.display = '';
+  document.getElementById('child-target').style.display = '';
+  document.getElementById('cert-header-title').textContent = '🏆 תעודת גבורה';
+  document.getElementById('cert-header-sub').textContent = 'צלמו את הילד על שלב מספר 1';
+  document.getElementById('open-camera-btn').textContent = '📷 פתחו מצלמה';
+}
+
+// ==============================
+// STATION GRID
+// ==============================
+function renderStationGrid() {
+  const grid = document.getElementById('station-grid');
+  grid.innerHTML = '';
+  STATIONS.forEach((s, i) => {
+    const done = state.completed.has(s.id);
+    const card = document.createElement('div');
+    card.className = 'station-card' + (done ? ' completed' : '');
+    card.onclick = () => {
+      card.classList.remove('tap-animate');
+      void card.offsetWidth; // reflow to restart animation
+      card.classList.add('tap-animate');
+      setTimeout(() => openStation(i), 200);
+    };
+    card.innerHTML = `
+      ${done ? '<div class="done-badge">✓</div>' : ''}
+      <img class="station-img" src="${s.image}" alt="${s.name}" loading="lazy">
+      <div class="station-name">${s.name}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function updateProgress() {
+  const n = state.completed.size;
+  const total = STATIONS.length;
+  document.getElementById('map-progress-text').textContent = `${n} מתוך ${total} תחנות הושלמו`;
+  document.getElementById('progress-fill').style.width = `${(n/total)*100}%`;
+  renderStationGrid();
+}
+
+// ==============================
+// OPEN STATION
+// ==============================
+function openStation(idx) {
+  const s = STATIONS[idx];
+  state.currentStationIdx = idx;
+  state.reps = 0;
+  stopAllTimers();
+
+  document.getElementById('detail-icon').innerHTML = `<img class="station-detail-img" src="${s.image}" alt="${s.name}">`;
+  document.getElementById('detail-name').textContent = s.name;
+  document.getElementById('detail-desc').textContent = s.desc;
+
+  const badge = document.getElementById('mode-badge-display');
+  badge.textContent = state.mode === 'competitive' ? '🔥 מצב תחרות' : '😊 מצב שגרה';
+  badge.className = 'mode-badge ' + state.mode;
+
+  // Safety note
+  const safetyCard = document.getElementById('safety-card');
+  if (s.safety) {
+    document.getElementById('safety-text').textContent = s.safety;
+    safetyCard.classList.remove('hidden');
+  } else {
+    safetyCard.classList.add('hidden');
+  }
+
+  document.getElementById('station-instructions').textContent = s.instructions[state.mode];
+
+  const cCard = document.getElementById('challenge-card');
+  if (state.mode === 'competitive' && s.challenge) {
+    document.getElementById('challenge-text').textContent = s.challenge;
+    cCard.classList.remove('hidden');
+  } else {
+    cCard.classList.add('hidden');
+  }
+
+  document.getElementById('parent-tip-text').textContent = s.tip;
+
+  ['timer-stopwatch','timer-countdown','timer-reps','timer-free'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  if (s.timerType === 'stopwatch') {
+    document.getElementById('timer-stopwatch').style.display = 'block';
+    initStopwatch(s);
+  } else if (s.timerType === 'countdown') {
+    document.getElementById('timer-countdown').style.display = 'block';
+    initCountdown(s);
+  } else if (s.timerType === 'reps') {
+    document.getElementById('timer-reps').style.display = 'block';
+    initReps(s);
+  } else {
+    document.getElementById('timer-free').style.display = 'block';
+  }
+
+  showScreen('screen-station');
+}
+
+// ==============================
+// STOPWATCH
+// ==============================
+function initStopwatch(s) {
+  state.swPhase = 'idle'; state.childTime = 0; state.parentTime = 0; state.timerElapsed = 0;
+  const dual = document.getElementById('dual-timer');
+  dual.style.display = state.mode === 'competitive' ? 'flex' : 'none';
+  document.getElementById('sw-display').textContent = '00:00';
+  document.getElementById('sw-label').textContent = 'לחצו להתחיל';
+  document.getElementById('sw-btn').textContent = '▶ התחל ריצה';
+  document.getElementById('sw-btn').className = 'primary-btn';
+  document.getElementById('sw-done-btn').classList.add('hidden');
+  document.getElementById('sw-circle').className = 'timer-circle';
+  if (state.mode === 'competitive') {
+    document.getElementById('pt-child-time').textContent = '--:--';
+    document.getElementById('pt-parent-time').textContent = '--:--';
+    document.getElementById('pt-child-result').textContent = '';
+    document.getElementById('pt-parent-result').textContent = '';
+    document.getElementById('pt-child').classList.remove('active-player');
+    document.getElementById('pt-parent').classList.remove('active-player');
+  }
+}
+
+function handleStopwatch() {
+  const btn = document.getElementById('sw-btn');
+  const doneBtn = document.getElementById('sw-done-btn');
+  const circle = document.getElementById('sw-circle');
+
+  if (state.mode === 'regular') {
+    if (!state.timerRunning) {
+      state.timerElapsed = 0; state.timerRunning = true;
+      circle.className = 'timer-circle running';
+      btn.textContent = '⏹ עצור';
+      document.getElementById('sw-label').textContent = 'רצים!';
+      state.timerInterval = setInterval(() => {
+        state.timerElapsed++;
+        document.getElementById('sw-display').textContent = formatTime(state.timerElapsed);
+      }, 1000);
+    } else {
+      clearInterval(state.timerInterval); state.timerRunning = false;
+      circle.className = 'timer-circle';
+      btn.textContent = '↺ ריצה נוספת';
+      document.getElementById('sw-label').textContent = 'כל הכבוד!';
+      doneBtn.classList.remove('hidden');
+    }
+  } else {
+    if (state.swPhase === 'idle') {
+      state.swPhase = 'child-running'; state.timerElapsed = 0; state.timerRunning = true;
+      circle.className = 'timer-circle running';
+      btn.textContent = '⏹ הגענו! (ילד)';
+      document.getElementById('sw-label').textContent = 'ילד רץ!';
+      document.getElementById('pt-child').classList.add('active-player');
+      state.timerInterval = setInterval(() => {
+        state.timerElapsed++;
+        const t = formatTime(state.timerElapsed);
+        document.getElementById('sw-display').textContent = t;
+        document.getElementById('pt-child-time').textContent = t;
+      }, 1000);
+    } else if (state.swPhase === 'child-running') {
+      clearInterval(state.timerInterval);
+      state.childTime = state.timerElapsed; state.swPhase = 'parent-running'; state.timerElapsed = 0; state.timerRunning = true;
+      document.getElementById('pt-child').classList.remove('active-player');
+      document.getElementById('pt-parent').classList.add('active-player');
+      btn.textContent = '⏹ הגענו! (הורה)';
+      document.getElementById('sw-label').textContent = 'הורה רץ!';
+      state.timerInterval = setInterval(() => {
+        state.timerElapsed++;
+        const t = formatTime(state.timerElapsed);
+        document.getElementById('sw-display').textContent = t;
+        document.getElementById('pt-parent-time').textContent = t;
+      }, 1000);
+    } else if (state.swPhase === 'parent-running') {
+      clearInterval(state.timerInterval);
+      state.parentTime = state.timerElapsed; state.timerRunning = false; state.swPhase = 'done';
+      circle.className = 'timer-circle';
+      document.getElementById('pt-parent').classList.remove('active-player');
+      if (state.childTime < state.parentTime) {
+        document.getElementById('pt-child-result').textContent = '🏆 מהיר יותר!';
+        document.getElementById('pt-parent-result').textContent = '💪 כמעט!';
+      } else if (state.parentTime < state.childTime) {
+        document.getElementById('pt-parent-result').textContent = '🏆 מהיר יותר!';
+        document.getElementById('pt-child-result').textContent = '💪 כמעט!';
+      } else {
+        document.getElementById('pt-child-result').textContent = '🤝 תיקו!';
+        document.getElementById('pt-parent-result').textContent = '🤝 תיקו!';
+      }
+      document.getElementById('sw-label').textContent = 'שניהם ניצחו!';
+      btn.textContent = '✓ ראינו!';
+      doneBtn.classList.remove('hidden');
+    }
+  }
+}
+
+// ==============================
+// COUNTDOWN
+// ==============================
+function initCountdown(s) {
+  const dur = s.duration || 60;
+  state.countdownTotal = dur; state.countdownRemaining = dur; state.timerRunning = false;
+  document.getElementById('cd-display').textContent = dur;
+  document.getElementById('cd-label').textContent = 'שניות';
+  document.getElementById('cd-btn').textContent = '▶ התחל';
+  document.getElementById('cd-btn').className = 'primary-btn';
+  document.getElementById('cd-done-btn').classList.add('hidden');
+  document.getElementById('cd-circle').className = 'timer-circle';
+  document.getElementById('cd-progress').className = 'timer-progress' + (state.mode === 'competitive' ? ' competitive' : '');
+  updateCountdownArc(dur, dur);
+}
+
+function handleCountdown() {
+  if (!state.timerRunning) {
+    state.timerRunning = true;
+    document.getElementById('cd-btn').textContent = '⏸ השהה';
+    document.getElementById('cd-circle').className = 'timer-circle ' + (state.mode === 'competitive' ? 'running-competitive' : 'running');
+    runCountdown();
+  } else {
+    cancelAnimationFrame(cdAnimFrame); state.timerRunning = false;
+    document.getElementById('cd-btn').textContent = '▶ המשך';
+    document.getElementById('cd-circle').className = 'timer-circle';
+  }
+}
+
+function runCountdown() {
+  cdStartTime = Date.now();
+  const startRemaining = state.countdownRemaining;
+  function tick() {
+    if (!state.timerRunning) return;
+    const elapsed = (Date.now() - cdStartTime) / 1000;
+    const remaining = Math.max(0, startRemaining - elapsed);
+    state.countdownRemaining = remaining;
+    document.getElementById('cd-display').textContent = Math.ceil(remaining);
+    updateCountdownArc(remaining, state.countdownTotal);
+    if (remaining <= 0) {
+      state.timerRunning = false;
+      document.getElementById('cd-circle').className = 'timer-circle';
+      document.getElementById('cd-btn').textContent = '↺ שוב';
+      document.getElementById('cd-label').textContent = 'סיום! 🎉';
+      document.getElementById('cd-done-btn').classList.remove('hidden');
+      return;
+    }
+    cdAnimFrame = requestAnimationFrame(tick);
+  }
+  cdAnimFrame = requestAnimationFrame(tick);
+}
+
+function updateCountdownArc(remaining, total) {
+  const c = 515;
+  document.getElementById('cd-progress').style.strokeDashoffset = c * (1 - remaining / total);
+}
+
+// ==============================
+// REPS
+// ==============================
+function initReps(s) {
+  state.reps = 0;
+  document.getElementById('rep-count').textContent = '0';
+  document.getElementById('rep-label').textContent = s.repLabel || 'נקודות';
+}
+function changeRep(delta) {
+  state.reps = Math.max(0, state.reps + delta);
+  const el = document.getElementById('rep-count');
+  el.textContent = state.reps;
+  if (delta > 0) { el.style.color = 'var(--success)'; setTimeout(() => { el.style.color = ''; }, 180); }
+}
+
+// ==============================
+// COMPLETE
+// ==============================
+function completeStation() {
+  stopAllTimers();
+  state.completed.add(STATIONS[state.currentStationIdx].id);
+  const cel = CELEBRATIONS[Math.floor(Math.random() * CELEBRATIONS.length)];
+  document.getElementById('cel-emoji').textContent = cel.emoji;
+  document.getElementById('cel-title').textContent = cel.title;
+  document.getElementById('cel-msg').textContent = cel.msg;
+  document.getElementById('overlay-celebration').classList.add('show');
+  fireConfetti();
+}
+
+function closeCelebration() {
+  document.getElementById('overlay-celebration').classList.remove('show');
+  clearConfetti();
+  updateProgress();
+  goToMap();
+  if (state.completed.size === STATIONS.length) {
+    setTimeout(() => {
+      if (confirm('סיימתם את כל 9 התחנות! רוצים לצלם תעודה?')) goToCertificate();
+    }, 400);
+  }
+}
+
+// ==============================
+// CONFETTI
+// ==============================
+const CONFETTI_COLORS = ['#2BBCB3','#F4A261','#FFD700','#FF6B9D','#7ED321'];
+function fireConfetti() {
+  const c = document.getElementById('confetti-container');
+  c.innerHTML = '';
+  for (let i = 0; i < 55; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `left:${Math.random()*100}%;top:${-10+Math.random()*-20}px;background:${CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)]};width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.5}s;`;
+    c.appendChild(p);
+  }
+}
+function clearConfetti() { setTimeout(() => { document.getElementById('confetti-container').innerHTML = ''; }, 3000); }
+
+// ==============================
+// UTILS
+// ==============================
+function stopAllTimers() {
+  clearInterval(state.timerInterval);
+  cancelAnimationFrame(cdAnimFrame);
+  state.timerRunning = false;
+}
+function formatTime(s) {
+  return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+}
+
+// ==============================
+// CERTIFICATE
+// ==============================
+let cameraFacing = 'environment';
+
+// Called on button tap (user gesture) — opens camera
+async function openCamera() {
+  const btn = document.getElementById('open-camera-btn');
+  btn.textContent = '⏳ פותח מצלמה...';
+  btn.disabled = true;
+  await startCamera('environment');
+  btn.disabled = false;
+}
+
+async function startCamera(facing) {
+  facing = facing || cameraFacing;
+  // Stop any existing stream and wait for hardware release
+  if (state.stream) {
+    state.stream.getTracks().forEach(t => t.stop());
+    state.stream = null;
+    await sleep(600);
+  }
+  const video = document.getElementById('camera-preview');
+
+  try {
+    let stream;
+    if (facing === 'environment') {
+      // ONE call — ask for rear camera directly. No switching, no enumerate.
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: 'environment' } }
+        });
+      } catch(e1) {
+        // exact failed — try loose constraint
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }
+        });
+      }
+    } else {
+      stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { exact: 'user' } }
+      });
+    }
+
+    state.stream = stream;
+    cameraFacing = facing;
+    video.srcObject = stream;
+    video.style.transform = facing === 'user' ? 'scaleX(-1)' : '';
+    document.getElementById('open-camera-actions').classList.add('hidden');
+    document.getElementById('pre-capture-actions').classList.remove('hidden');
+
+  } catch(e) {
+    // Last resort: open any camera
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      state.stream = stream;
+      video.srcObject = stream;
+      video.style.transform = '';
+      document.getElementById('open-camera-actions').classList.add('hidden');
+      document.getElementById('pre-capture-actions').classList.remove('hidden');
+    } catch(e2) {
+      document.getElementById('open-camera-btn').textContent = '📷 נסו שוב (' + e2.name + ')';
+    }
+  }
+}
+
+async function flipCamera() {
+  const newFacing = cameraFacing === 'environment' ? 'user' : 'environment';
+  const btn = document.getElementById('camera-flip-btn');
+  btn.style.opacity = '0.4';
+  await startCamera(newFacing);
+  btn.style.opacity = '1';
+}
+
+let lastDataUrl = null;
+
+function drawStar(ctx, cx, cy, r, color) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+
+async function startCapture() {
+  const flash = document.getElementById('countdown-flash');
+  const btn = document.getElementById('capture-btn');
+  btn.disabled = true;
+
+  for (let i = 3; i >= 1; i--) {
+    flash.textContent = i; flash.style.opacity = '1';
+    await sleep(700); flash.style.opacity = '0'; await sleep(300);
+  }
+  flash.textContent = '📸'; flash.style.opacity = '1';
+  setTimeout(() => { flash.style.opacity = '0'; }, 500);
+
+  const video = document.getElementById('camera-preview');
+  const canvas = document.getElementById('cert-canvas');
+  const vW = video.videoWidth || 640, vH = video.videoHeight || 480;
+
+  // Certificate canvas: A4-like portrait, good for printing
+  const cW = 900, cH = 1240;
+  canvas.width = cW; canvas.height = cH;
+  const ctx = canvas.getContext('2d');
+  ctx.direction = 'rtl';
+
+  // ── BACKGROUND ──
+  const bgGrad = ctx.createLinearGradient(0, 0, 0, cH);
+  bgGrad.addColorStop(0, '#FFFEF5');
+  bgGrad.addColorStop(1, '#F0FAF9');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, cW, cH);
+
+  // ── BORDER: outer orange + inner teal ──
+  ctx.strokeStyle = '#F4A261'; ctx.lineWidth = 9;
+  ctx.strokeRect(7, 7, cW - 14, cH - 14);
+  ctx.strokeStyle = '#2BBCB3'; ctx.lineWidth = 3;
+  ctx.strokeRect(20, 20, cW - 40, cH - 40);
+
+  // ── CORNER STARS ──
+  const corners = [[48,48],[cW-48,48],[48,cH-48],[cW-48,cH-48]];
+  corners.forEach(([x,y]) => drawStar(ctx, x, y, 14, '#F4A261'));
+
+  // ── HEADER BAND ──
+  const hdrGrad = ctx.createLinearGradient(0, 0, cW, 0);
+  hdrGrad.addColorStop(0, '#1A9E96');
+  hdrGrad.addColorStop(0.5, '#2BBCB3');
+  hdrGrad.addColorStop(1, '#1A9E96');
+  ctx.fillStyle = hdrGrad;
+  ctx.fillRect(0, 0, cW, 140);
+
+  // Teal->orange stripe
+  ctx.fillStyle = '#F4A261';
+  ctx.fillRect(0, 140, cW, 7);
+
+  // Header text
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 50px Arial';
+  ctx.fillText('🌟 תעודת גבורה 🌟', cW / 2, 72);
+  ctx.font = '26px Arial';
+  ctx.fillStyle = 'rgba(255,255,255,0.88)';
+  ctx.fillText('מושפיט × דיגיטף 2026', cW / 2, 112);
+
+  // ── PHOTO AREA ──
+  const photoMargin = 55;
+  const photoW = cW - photoMargin * 2;
+  const photoH = Math.round(photoW * (vH / vW));
+  const maxPhotoH = 460;
+  const finalPhotoH = Math.min(photoH, maxPhotoH);
+  const finalPhotoW = Math.round(finalPhotoH * (vW / vH));
+  const photoX = Math.round((cW - finalPhotoW) / 2);
+  const photoY = 170;
+
+  // Photo shadow
+  ctx.shadowColor = 'rgba(43,188,179,0.3)';
+  ctx.shadowBlur = 18; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 6;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(photoX - 10, photoY - 10, finalPhotoW + 20, finalPhotoH + 20);
+  ctx.shadowBlur = 0; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
+
+  // Draw photo — mirror only if front camera (selfie mode)
+  if (cameraFacing === 'user') {
+    ctx.save();
+    ctx.translate(photoX + finalPhotoW, photoY);
+    ctx.scale(-1, 1);
+    ctx.drawImage(video, 0, 0, vW, vH, 0, 0, finalPhotoW, finalPhotoH);
+    ctx.restore();
+  } else {
+    ctx.drawImage(video, 0, 0, vW, vH, photoX, photoY, finalPhotoW, finalPhotoH);
+  }
+
+  // Draw podium overlay on photo (same position as CSS: bottom 42% of photo frame)
+  const podiumImg = new Image();
+  podiumImg.src = 'images/podium.png';
+  await new Promise(r => { podiumImg.onload = r; podiumImg.onerror = r; });
+  if (podiumImg.complete && podiumImg.naturalWidth > 0) {
+    const podH = Math.round(finalPhotoH * 0.44);
+    const podY = photoY + finalPhotoH - podH;
+    // multiply: white bg of podium becomes transparent, colored podium shows over photo
+    ctx.globalCompositeOperation = 'multiply';
+    ctx.drawImage(podiumImg, photoX, podY, finalPhotoW, podH);
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  // Photo teal border
+  ctx.strokeStyle = '#2BBCB3'; ctx.lineWidth = 4;
+  ctx.strokeRect(photoX - 4, photoY - 4, finalPhotoW + 8, finalPhotoH + 8);
+  ctx.strokeStyle = '#F4A261'; ctx.lineWidth = 1.5;
+  ctx.strokeRect(photoX - 10, photoY - 10, finalPhotoW + 20, finalPhotoH + 20);
+
+  // ── MAIN TEXT ──
+  const textBaseY = photoY + finalPhotoH + 48;
+
+  // Stars row
+  ctx.fillStyle = '#F4A261';
+  ctx.font = '30px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('★  ★  ★  ★  ★', cW / 2, textBaseY);
+
+  // Certificate text
+  ctx.fillStyle = '#1A1A1A';
+  ctx.font = 'bold 36px Arial';
+  ctx.fillText('התחזקתי עם מושפיט', cW / 2, textBaseY + 55);
+  ctx.fillText('באירוע דיגיטף 2026', cW / 2, textBaseY + 100);
+
+  // Subtitle
+  ctx.fillStyle = '#2BBCB3';
+  ctx.font = '24px Arial';
+  ctx.fillText('חדר כושר ת"א לקטנטנים', cW / 2, textBaseY + 140);
+
+  // ── DIVIDER ──
+  const divY = textBaseY + 168;
+  ctx.strokeStyle = '#A8DDD9'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(80, divY); ctx.lineTo(cW - 80, divY); ctx.stroke();
+  drawStar(ctx, cW / 2, divY, 8, '#F4A261');
+
+  // Date + website
+  ctx.fillStyle = '#888';
+  ctx.font = '19px Arial';
+  ctx.fillText('יוני 2026  |  moshfitkids.com', cW / 2, divY + 32);
+
+  // ── FOOTER BAND ──
+  ctx.fillStyle = '#2BBCB3';
+  ctx.fillRect(0, cH - 55, cW, 55);
+  ctx.fillStyle = '#fff';
+  ctx.font = '17px Arial';
+  ctx.fillText('מושפיט — תנועה, חיבור, שמחה', cW / 2, cH - 20);
+
+  // ── SHOW RESULT ──
+  lastDataUrl = canvas.toDataURL('image/png');
+  const resultImg = document.getElementById('cert-result-img');
+  resultImg.src = lastDataUrl;
+  resultImg.classList.remove('hidden');
+
+  document.getElementById('camera-preview').style.opacity = '0';
+  document.getElementById('cert-bg-overlay').style.display = 'none';
+  document.getElementById('camera-guide-text').style.display = 'none';
+  document.getElementById('child-target').style.display = 'none';
+
+  document.getElementById('cert-header-title').textContent = '🏆 התעודה מוכנה!';
+  document.getElementById('cert-header-sub').textContent = 'שמרו, שתפו, או צלמו שוב';
+
+  document.getElementById('save-btn').href = lastDataUrl;
+  document.getElementById('pre-capture-actions').classList.add('hidden');
+  document.getElementById('post-capture-actions').classList.remove('hidden');
+  btn.disabled = false;
+}
+
+function retakePhoto() {
+  document.getElementById('cert-result-img').classList.add('hidden');
+  document.getElementById('camera-preview').style.opacity = '1';
+  document.getElementById('cert-bg-overlay').style.display = '';
+  document.getElementById('camera-guide-text').style.display = '';
+  document.getElementById('child-target').style.display = '';
+  document.getElementById('cert-header-title').textContent = '🏆 תעודת גבורה';
+  document.getElementById('cert-header-sub').textContent = 'צלמו את הילד על שלב מספר 1';
+  // Camera already open — go straight to capture state
+  document.getElementById('post-capture-actions').classList.add('hidden');
+  document.getElementById('pre-capture-actions').classList.remove('hidden');
+  lastDataUrl = null;
+}
+
+async function sharePhoto() {
+  if (!lastDataUrl) return;
+  try {
+    // Convert dataURL to blob for native share
+    const res = await fetch(lastDataUrl);
+    const blob = await res.blob();
+    const file = new File([blob], 'moshfit-digitaf-2026.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: 'מושפיט × דיגיטף 2026',
+        text: 'השתתפתי בפעילות מושפיט בדיגיטף! moshfitkids.com',
+        files: [file]
+      });
+    } else if (navigator.share) {
+      await navigator.share({
+        title: 'מושפיט × דיגיטף 2026',
+        text: 'השתתפתי בפעילות מושפיט בדיגיטף! moshfitkids.com',
+        url: 'https://moshfitkids.com'
+      });
+    } else {
+      // Fallback: open image in new tab
+      window.open(lastDataUrl, '_blank');
+    }
+  } catch(e) {
+    window.open(lastDataUrl, '_blank');
+  }
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+</body>
+</html>
