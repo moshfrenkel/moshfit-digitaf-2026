@@ -672,6 +672,15 @@
 </head>
 <body>
 
+<!-- PRIVACY BANNER -->
+<div id="privacy-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1F2937;color:#fff;z-index:150;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:'Heebo',sans-serif;font-size:13px;line-height:1.5;">
+  <span>האתר מתארח על GitHub Pages, שרושמת כתובות IP לצורכי אבטחה.
+    <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" style="background:none;border:none;color:#06B6D4;cursor:pointer;font-size:13px;font-family:'Heebo',sans-serif;text-decoration:underline;padding:0;">מדיניות פרטיות</button>
+  </span>
+  <button onclick="document.getElementById('privacy-banner').style.display='none';localStorage.setItem('pb','1')" aria-label="סגור" style="background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:20px;line-height:1;flex-shrink:0;min-width:32px;min-height:32px;">✕</button>
+</div>
+<script>if(localStorage.getItem('pb')){document.getElementById('privacy-banner').style.display='none';}</script>
+
 <div class="confetti-container" id="confetti-container"></div>
 
 <!-- CELEBRATION -->
