@@ -699,6 +699,29 @@
 
   <button class="start-btn" onclick="goToMap()">יאללה, מתחילים 💪</button>
   <div class="digitaf-credit">פעילות מושפיט ב<strong>דיגיטף</strong> | עיריית תל אביב-יפו</div>
+  <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')"
+    style="background:none;border:none;color:var(--muted);font-size:12px;font-family:'Heebo',sans-serif;cursor:pointer;margin-top:6px;text-decoration:underline;">
+    הצהרת פרטיות
+  </button>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div id="privacy-modal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;display:flex;align-items:flex-end;justify-content:center;">
+  <div style="background:#fff;width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:28px 22px 36px;max-height:80vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <span style="font-family:'Rubik',sans-serif;font-weight:800;font-size:18px;color:#1F2937;">הצהרת פרטיות</span>
+      <button onclick="document.getElementById('privacy-modal').classList.add('hidden')"
+        style="background:none;border:none;font-size:22px;cursor:pointer;color:#6B7280;line-height:1;">✕</button>
+    </div>
+    <div style="font-family:'Heebo',sans-serif;font-size:15px;line-height:1.7;color:#374151;display:flex;flex-direction:column;gap:12px;">
+      <p><strong style="color:#1F2937;">אין איסוף מידע אישי.</strong> אפליקציה זו אינה אוספת, שומרת או מעבירה שום מידע אישי לשום שרת.</p>
+      <p><strong style="color:#1F2937;">שימוש במצלמה.</strong> המצלמה נפתחת בלבד לצורך יצירת תעודה מקומית. התמונה נוצרת ונשמרת ישירות במכשיר שלך ואינה נשלחת לשום מקום.</p>
+      <p><strong style="color:#1F2937;">אין עוגיות (Cookies).</strong> האפליקציה אינה משתמשת בעוגיות, בניתוח גלישה (Analytics) או במעקב אחר משתמשים.</p>
+      <p><strong style="color:#1F2937;">גופנים חיצוניים.</strong> האפליקציה טוענת גופנים משרת Google Fonts. טעינה זו אנונימית לחלוטין ואינה כוללת מידע מזהה.</p>
+      <p><strong style="color:#1F2937;">שמירת נתונים.</strong> כל מידע שנוצר (כולל תמונות) שמור בלעדית במכשיר המשתמש ואינו בשליטת מושפיט.</p>
+      <p style="color:#9CA3AF;font-size:13px;">בהתאם לחוק הגנת הפרטיות, תשמ"א-1981 ותיקוניו. לשאלות: mfrenkel5@gmail.com</p>
+    </div>
+  </div>
 </div>
 
 <!-- MAP -->
