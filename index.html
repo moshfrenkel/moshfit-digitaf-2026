@@ -733,7 +733,6 @@
     <div class="mode-badge regular" id="mode-badge-display">מצב רגוע</div>
 
     <div class="safety-card hidden" id="safety-card">
-      <span class="safety-icon">⚠️</span>
       <span id="safety-text"></span>
     </div>
 
@@ -743,7 +742,7 @@
     </div>
 
     <div class="challenge-card hidden" id="challenge-card">
-      <strong>🔥 אתגר התחרות</strong>
+      <strong>אתגר</strong>
       <span id="challenge-text"></span>
     </div>
 
@@ -815,7 +814,7 @@
     </div>
 
     <div class="parent-tip" id="parent-tip-box">
-      <strong>💡 טיפ להורה</strong>
+      <strong>טיפ להורה</strong>
       <span id="parent-tip-text"></span>
     </div>
   </div>
@@ -829,7 +828,7 @@
   </div>
   <div class="camera-wrap">
     <video id="camera-preview" autoplay playsinline muted></video>
-    <button id="camera-flip-btn" onclick="flipCamera()" title="החלף מצלמה">🔄</button>
+    <button id="camera-flip-btn" onclick="flipCamera()" title="החלף מצלמה" aria-label="החלף בין מצלמה קדמית לאחורית">↺</button>
     <img id="cert-bg-overlay" src="images/podium.png" alt="">
     <canvas id="cert-canvas"></canvas>
     <div id="camera-guide-text" id="cert-live-overlay">
@@ -842,7 +841,10 @@
   <div class="cert-actions">
     <!-- State 1: camera not open yet -->
     <div id="open-camera-actions">
-      <button class="capture-btn" id="open-camera-btn" onclick="openCamera()">📷 פתחו מצלמה</button>
+      <button class="capture-btn" id="open-camera-btn" onclick="openCamera()">פתחו מצלמה</button>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5">
+        המצלמה נפתחת לצילום מקומי בלבד. לא נשמר, לא נשלח לשום מקום.
+      </p>
     </div>
     <!-- State 2: camera open, ready to shoot -->
     <div id="pre-capture-actions" class="hidden">
@@ -1127,7 +1129,7 @@ function openStation(idx) {
   document.getElementById('detail-desc').textContent = s.desc;
 
   const badge = document.getElementById('mode-badge-display');
-  badge.textContent = state.mode === 'competitive' ? '🔥 מצב תחרות' : 'מצב רגוע';
+  badge.textContent = state.mode === 'competitive' ? 'מצב תחרות' : 'מצב רגוע';
   badge.className = 'mode-badge ' + state.mode;
 
   // Safety note

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מושפיט × דיגיטף 2026 — הדפסת QR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;800;900&family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Heebo', sans-serif;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #F9FAFB;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20mm 16mm;
+      gap: 0;
+    }
+
+    /* עיגולי רקע */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(6,182,212,0.10), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .page::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(236,72,153,0.08), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .brand-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #06B6D4, #EC4899);
+      color: white;
+      border-radius: 99px;
+      padding: 6px 20px;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    .mascot-img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 16px;
+      mix-blend-mode: multiply;
+    }
+
+    .headline {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: 38px;
+      line-height: 1.2;
+      text-align: center;
+      background: linear-gradient(135deg, #06B6D4 0%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .subhead {
+      font-family: 'Heebo', sans-serif;
+      font-size: 18px;
+      color: #6B7280;
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .qr-wrap {
+      background: white;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      border: 1.5px solid #E5E7EB;
+    }
+
+    #qr-canvas {
+      display: block;
+    }
+
+    .scan-label {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #1F2937;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .scan-sub {
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px;
+      color: #6B7280;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .url-box {
+      background: #ECFEFF;
+      border: 1.5px solid #06B6D4;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      color: #0891B2;
+      direction: ltr;
+      margin-bottom: 28px;
+      word-break: break-all;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      color: #9CA3AF;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .footer-text strong {
+      color: #06B6D4;
+      font-weight: 700;
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; margin: 0; }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        box-shadow: none;
+        margin: 0;
+        page-break-after: always;
+      }
+      .print-btn { display: none; }
+    }
+
+    .print-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #F97316;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 14px 32px;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(249,115,22,0.35);
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="brand-tag">מושפיט × דיגיטף 2026</div>
+
+  <img class="mascot-img"
+       src="images/mascot.png"
+       onerror="this.src='images/mascot.jpg'"
+       alt="מושפיטר">
+
+  <h1 class="headline">9 תחנות. הרבה כיף.</h1>
+  <p class="subhead">פעילות תנועה להורים וילדים<br>כניסה חינמית לכל מי שסורק</p>
+
+  <div class="qr-wrap">
+    <canvas id="qr-canvas"></canvas>
+  </div>
+
+  <p class="scan-label">סרקו עם הטלפון</p>
+  <p class="scan-sub">מצלמה רגילה מספיקה. אין צורך בהורדה.</p>
+
+  <div class="url-box">moshfrenkel.github.io/moshfit-digitaf-2026</div>
+
+  <p class="footer-text">
+    <strong>מושפיט</strong> — תנועה שמחברת.<br>
+    יריד עירוני דיגיטף, תל אביב-יפו 2026
+  </p>
+</div>
+
+<button class="print-btn" onclick="window.print()">הדפסת דף A4</button>
+
+<script>
+  const URL = 'https://moshfrenkel.github.io/moshfit-digitaf-2026/';
+  QRCode.toCanvas(
+    document.getElementById('qr-canvas'),
+    URL,
+    {
+      width: 220,
+      margin: 2,
+      color: { dark: '#0E7490', light: '#FFFFFF' }
+    },
+    function(err) {
+      if (err) console.error(err);
+    }
+  );
+</script>
+</body>
+</html>
