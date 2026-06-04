@@ -4,23 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>חדר כושר ת"א לקטנטנים | מושפיט × דיגיטף</title>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;900&family=Secular+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;900&family=Secular+One&family=Rubik:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --teal: #2BBCB3;
-      --teal-light: #E6F7F6;
-      --teal-mid: #A8DDD9;
-      --orange: #F4A261;
-      --orange-light: #FEF3EA;
-      --bg: #FFFFFF;
-      --bg2: #F7FBFB;
+      --teal: #06B6D4;
+      --teal-dark: #0891B2;
+      --teal-light: #ECFEFF;
+      --teal-mid: #67CEDA;
+      --pink: #EC4899;
+      --orange: #F97316;
+      --orange-light: #FFF7ED;
+      --bg: #F9FAFB;
+      --bg2: #FBF9F4;
       --card: #FFFFFF;
-      --border: #DFF0EE;
-      --text: #1A1A1A;
-      --text2: #444;
-      --muted: #777;
+      --border: #E5E7EB;
+      --text: #1F2937;
+      --text2: #374151;
+      --muted: #6B7280;
       --success: #27AE60;
-      --success-light: #E6F7ED;
+      --success-light: #DCFCE7;
       --warning-bg: #FEF9EC;
       --warning-border: #F6CC6D;
     }
@@ -53,38 +55,66 @@
       justify-content: center;
       align-items: center;
       padding: 28px 24px 36px;
-      background: linear-gradient(165deg, #E6F7F6 0%, #FFFFFF 55%);
+      background: var(--bg);
       text-align: center;
       gap: 0;
+      position: relative;
+    }
+    #screen-welcome::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(6,182,212,0.10), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    #screen-welcome::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(236,72,153,0.07), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
     .welcome-mascot {
-      width: 130px;
-      height: 130px;
+      width: 160px;
+      height: 160px;
       object-fit: contain;
-      margin-bottom: 14px;
-      filter: drop-shadow(0 4px 14px rgba(43,188,179,0.25));
-      animation: floatBounce 2.4s ease-in-out infinite;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 8px 20px rgba(6,182,212,0.22));
+      mix-blend-mode: multiply;
+      animation: floatBounce 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      position: relative; z-index: 1;
     }
     @keyframes floatBounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
+      0%,100% { transform: translateY(0) scale(1); }
+      30% { transform: translateY(-10px) scale(1.03); }
+      60% { transform: translateY(-5px) scale(1.01); }
     }
     .welcome-brand {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--teal);
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      font-family: 'Heebo', sans-serif;
     }
     .welcome-title {
-      font-family: 'Secular One', sans-serif;
-      font-size: 32px;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 6px;
+      font-family: 'Rubik', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #06B6D4 0%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative; z-index: 1;
     }
-    .welcome-title span { color: var(--teal); }
+    .welcome-title span { color: inherit; -webkit-text-fill-color: inherit; }
     .welcome-sub {
       font-size: 15px;
       color: var(--muted);
@@ -114,26 +144,27 @@
       background: transparent;
       color: var(--muted);
     }
-    .mode-btn.active { background: var(--teal); color: #fff; box-shadow: 0 2px 10px rgba(43,188,179,0.3); }
-    .mode-btn.active.competitive { background: var(--orange); box-shadow: 0 2px 10px rgba(244,162,97,0.3); }
+    .mode-btn.active { background: var(--teal); color: #fff; box-shadow: 0 2px 10px rgba(6,182,212,0.3); }
+    .mode-btn.active.competitive { background: var(--orange); box-shadow: 0 2px 10px rgba(249,115,22,0.3); }
     .mode-desc { font-size: 13px; color: var(--muted); margin-top: 9px; line-height: 1.5; }
 
     .start-btn {
       width: 100%;
       max-width: 320px;
-      padding: 17px;
+      padding: 18px;
       border: none;
-      border-radius: 16px;
-      background: var(--orange);
+      border-radius: 20px;
+      background: linear-gradient(135deg, #F97316 0%, #EC4899 100%);
       color: #fff;
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Rubik', sans-serif;
       font-size: 19px;
-      font-weight: 900;
+      font-weight: 800;
       cursor: pointer;
-      transition: transform 0.12s, box-shadow 0.15s;
-      box-shadow: 0 4px 18px rgba(244,162,97,0.4);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+      box-shadow: 0 6px 24px rgba(249,115,22,0.35);
+      position: relative; z-index: 1;
     }
-    .start-btn:active { transform: scale(0.97); }
+    .start-btn:active { transform: scale(0.95); }
 
     .digitaf-credit {
       margin-top: 20px;
@@ -143,17 +174,22 @@
     .digitaf-credit strong { color: var(--teal); }
 
     /* ===== MAP ===== */
-    #screen-map { background: var(--bg2); }
+    #screen-map { background: var(--bg); }
+    #screen-station { background: var(--bg); }
 
     .map-header {
       padding: 48px 18px 14px;
-      background: linear-gradient(180deg, var(--teal-light) 0%, var(--bg2) 100%);
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
     .map-header h1 {
-      font-family: 'Secular One', sans-serif;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 800;
       font-size: 22px;
-      color: var(--text);
+      background: linear-gradient(135deg, #06B6D4 0%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .map-header p { font-size: 13px; color: var(--muted); margin-top: 3px; }
     .progress-bar-wrap { margin-top: 10px; height: 5px; background: var(--border); border-radius: 5px; overflow: hidden; }
@@ -163,16 +199,17 @@
 
     .station-card {
       position: relative;
-      border-radius: 14px;
-      border: 2.5px solid var(--teal-mid);
+      border-radius: 28px;
+      border: 1.5px solid var(--border);
       overflow: hidden;
       cursor: pointer;
       aspect-ratio: 1;
-      background: var(--teal-light);
-      box-shadow: 0 2px 10px rgba(43,188,179,0.12);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--card);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
     }
-    .station-card.completed { border-color: var(--success); }
+    .station-card:active { transform: scale(0.94); }
+    .station-card.completed { border-color: var(--success); box-shadow: 0 2px 12px rgba(39,174,96,0.15); }
     .station-card.completed::after {
       content: '';
       position: absolute; inset: 0;
@@ -181,18 +218,25 @@
 
     @keyframes cardTap {
       0%   { transform: scale(1) rotate(0deg); }
-      25%  { transform: scale(0.88) rotate(-2.5deg); }
-      60%  { transform: scale(1.07) rotate(1.5deg); }
-      80%  { transform: scale(0.97) rotate(-0.5deg); }
+      20%  { transform: scale(0.86) rotate(-3deg); }
+      55%  { transform: scale(1.10) rotate(2deg); }
+      75%  { transform: scale(0.96) rotate(-0.8deg); }
+      90%  { transform: scale(1.02); }
       100% { transform: scale(1) rotate(0deg); }
     }
-    .station-card.tap-animate { animation: cardTap 0.38s cubic-bezier(.36,.07,.19,.97); }
+    .station-card.tap-animate { animation: cardTap 0.45s cubic-bezier(.36,.07,.19,.97); }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
 
     .station-img {
       width: 100%; height: 100%;
       object-fit: contain;
-      padding: 8px;
+      padding: 6px;
       display: block;
+      mix-blend-mode: multiply;
     }
     .station-card.completed .station-img { opacity: 0.6; }
 
@@ -249,27 +293,42 @@
 
     .station-header {
       padding: 48px 18px 18px;
-      background: linear-gradient(175deg, var(--teal-light) 0%, #fff 100%);
+      background: var(--bg);
       text-align: center;
       border-bottom: 1px solid var(--border);
     }
     .back-btn {
-      display: flex; align-items: center; gap: 6px;
-      background: none; border: none;
-      color: var(--teal); font-family: 'Heebo', sans-serif;
-      font-size: 15px; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 10px 18px;
+      color: var(--teal-dark);
+      font-family: 'Rubik', sans-serif;
+      font-size: 15px; font-weight: 700;
       cursor: pointer; margin-bottom: 14px;
-      text-align: right;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      min-height: 48px;
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1);
     }
+    .back-btn:active { transform: scale(0.95); }
     .station-detail-img {
-      width: 120px; height: 88px;
+      width: 160px;
+      height: 160px;
       object-fit: contain;
       margin-bottom: 8px;
-      filter: drop-shadow(0 4px 10px rgba(43,188,179,0.2));
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     .station-detail-name {
-      font-family: 'Secular One', sans-serif;
-      font-size: 26px; color: var(--text);
+      font-family: 'Rubik', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      background: linear-gradient(135deg, #06B6D4 0%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .station-detail-desc { font-size: 14px; color: var(--muted); margin-top: 3px; }
 
@@ -288,7 +347,7 @@
     .safety-card {
       background: var(--warning-bg);
       border: 1px solid var(--warning-border);
-      border-radius: 12px;
+      border-radius: 20px;
       padding: 10px 14px;
       font-size: 13px;
       color: #7A5C00;
@@ -299,18 +358,18 @@
     .safety-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 
     .instructions-card {
-      background: var(--bg2);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
+      border-radius: 28px;
+      padding: 16px 18px;
     }
     .instructions-card h3 { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
     .instructions-card p { font-size: 16px; line-height: 1.65; color: var(--text); }
 
     .challenge-card {
       background: var(--orange-light);
-      border: 1px solid rgba(244,162,97,0.4);
-      border-radius: 12px;
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 28px;
       padding: 12px 16px;
       font-size: 14px;
       color: #6B3D0C;
@@ -341,8 +400,8 @@
       position: relative;
       border: 3px solid var(--border);
     }
-    .timer-circle.running { border-color: var(--teal); box-shadow: 0 0 20px rgba(43,188,179,0.2); }
-    .timer-circle.running-competitive { border-color: var(--orange); box-shadow: 0 0 20px rgba(244,162,97,0.2); }
+    .timer-circle.running { border-color: var(--teal); box-shadow: 0 0 20px rgba(6,182,212,0.2); }
+    .timer-circle.running-competitive { border-color: var(--orange); box-shadow: 0 0 20px rgba(249,115,22,0.2); }
 
     .timer-svg { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); transform: rotate(-90deg); }
     .timer-track { fill: none; stroke: var(--border); stroke-width: 3; }
@@ -376,16 +435,16 @@
     .primary-btn {
       width: 100%; max-width: 280px;
       padding: 15px; border: none;
-      border-radius: 14px;
+      border-radius: 20px;
       background: var(--teal); color: #fff;
-      font-family: 'Heebo', sans-serif;
-      font-size: 17px; font-weight: 900;
+      font-family: 'Rubik', sans-serif;
+      font-size: 17px; font-weight: 700;
       cursor: pointer;
-      transition: transform 0.1s, box-shadow 0.15s;
-      box-shadow: 0 3px 14px rgba(43,188,179,0.3);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(6,182,212,0.25);
     }
-    .primary-btn:active { transform: scale(0.97); }
-    .primary-btn.orange { background: var(--orange); box-shadow: 0 3px 14px rgba(244,162,97,0.3); }
+    .primary-btn:active { transform: scale(0.95); }
+    .primary-btn.orange { background: var(--orange); box-shadow: 0 4px 16px rgba(249,115,22,0.25); }
     .primary-btn.done { background: var(--success); box-shadow: 0 3px 14px rgba(39,174,96,0.3); }
     .secondary-btn {
       background: none; border: 1.5px solid var(--border);
@@ -457,7 +516,7 @@
       position: relative;
       margin: 20px auto 16px;
       border: 2px solid var(--teal-mid);
-      box-shadow: 0 4px 20px rgba(43,188,179,0.15);
+      box-shadow: 0 4px 20px rgba(6,182,212,0.15);
     }
     #camera-preview { width: 100%; height: 100%; object-fit: cover; }
     #cert-canvas { display: none; }
@@ -488,7 +547,7 @@
       background: var(--orange); border: none; border-radius: 14px;
       color: #fff; font-family: 'Heebo', sans-serif;
       font-size: 17px; font-weight: 900; cursor: pointer;
-      box-shadow: 0 3px 14px rgba(244,162,97,0.35);
+      box-shadow: 0 3px 14px rgba(249,115,22,0.35);
     }
     .save-btn {
       padding: 13px; background: var(--bg);
@@ -559,7 +618,7 @@
       backdrop-filter: blur(4px);
       transition: background 0.2s;
     }
-    #camera-flip-btn:active { background: rgba(43,188,179,0.7); }
+    #camera-flip-btn:active { background: rgba(6,182,212,0.7); }
 
     /* Composed result image after capture */
     .cert-result-img {
@@ -583,11 +642,31 @@
 
     .hidden { display: none !important; }
 
+    /* ===== MOBILE-FIRST OVERRIDES ===== */
+
+    /* כפתורים: touch target מינימום 48px */
+    button, .primary-btn, .start-btn, .secondary-btn, .mode-btn {
+      min-height: 48px;
+    }
+    .rep-btn { min-height: 62px; }
+
+    /* instructions: גודל קריאה */
+    .instructions-card p { font-size: 17px; line-height: 1.7; }
+    .parent-tip { font-size: 15px; line-height: 1.65; }
+    .challenge-card { font-size: 15px; }
+
+    /* station body: אוויר */
+    .station-body { padding: 16px 16px 40px; gap: 14px; }
+
+    /* player boxes: touch */
+    .player-timer .player-time { font-size: 32px; }
+    .player-timer { padding: 16px 12px; }
+
     @media (max-width: 360px) {
-      .station-grid { gap: 8px; padding: 12px; }
-      .station-card { padding: 10px 8px; min-height: 96px; }
-      .station-img { width: 60px; height: 44px; }
-      .station-name { font-size: 11px; }
+      .station-grid { gap: 6px; padding: 10px; }
+      .station-card { border-radius: 22px; }
+      .station-img { padding: 4px; }
+      .station-name { font-size: 10px; }
     }
   </style>
 </head>
@@ -605,16 +684,15 @@
 
 <!-- WELCOME -->
 <div class="screen" id="screen-welcome">
-  <img class="welcome-mascot" src="images/sprint.png" alt="מושפיטר">
+  <img class="welcome-mascot" src="images/mascot.png" alt="מושפיטר" onerror="this.src='images/mascot.jpg'">
   <div class="welcome-brand">מושפיט × דיגיטף 2026</div>
-  <div class="welcome-title">בואו <span>לשחק</span> איתנו</div>
-  <div class="welcome-sub">9 תחנות פעילות, המון כיף, ותעודה בסוף.</div>
+  <div class="welcome-title">האירוע השנתי של <span>דיגיטף 2026</span><br>משחקים ומתחזקים עם מושפיט<br>בואו לשחק איתנו!</div>
 
   <div class="mode-section">
     <div class="mode-label">בחרו את המצב שלכם</div>
     <div class="mode-toggle">
-      <button class="mode-btn active" id="btn-regular" onclick="setMode('regular')">😊 שגרה</button>
-      <button class="mode-btn competitive" id="btn-competitive" onclick="setMode('competitive')">🔥 תחרות</button>
+      <button class="mode-btn active" id="btn-regular" onclick="setMode('regular')">רגוע</button>
+      <button class="mode-btn competitive" id="btn-competitive" onclick="setMode('competitive')">תחרות</button>
     </div>
     <p class="mode-desc" id="mode-desc">כל תחנה עם הוראות פשוטות לכל הגילאים</p>
   </div>
@@ -635,7 +713,7 @@
   </div>
   <div class="station-grid" id="station-grid"></div>
   <div class="map-footer">
-    <button class="finish-btn" onclick="goToCertificate()">📸 סיימנו — צלמו תעודה!</button>
+    <button class="finish-btn" onclick="goToCertificate()">📸 סיימנו, צלמו תעודה!</button>
     <a class="whatsapp-btn" href="https://chat.whatsapp.com/Jg2uU0inKjW58xVdXc2RAE" target="_blank">
       💬 הצטרפו לקהילת משפחה בתנועה
     </a>
@@ -652,7 +730,7 @@
   </div>
 
   <div class="station-body">
-    <div class="mode-badge regular" id="mode-badge-display">😊 מצב שגרה</div>
+    <div class="mode-badge regular" id="mode-badge-display">מצב רגוע</div>
 
     <div class="safety-card hidden" id="safety-card">
       <span class="safety-icon">⚠️</span>
@@ -678,12 +756,14 @@
       <div class="dual-timer" id="dual-timer" style="display:none">
         <div class="player-timer" id="pt-child">
           <div class="player-label">ילד 🧒</div>
-          <div class="player-time" id="pt-child-time">--:--</div>
+          <div class="player-time" id="pt-child-time">00:00</div>
+          <button class="primary-btn orange" id="pt-child-stop-btn" onclick="stopPlayer('child')" style="width:100%;padding:10px;font-size:14px;margin-top:8px;border-radius:10px">⏹ הגעתי!</button>
           <div class="player-result" id="pt-child-result"></div>
         </div>
         <div class="player-timer" id="pt-parent">
           <div class="player-label">הורה 🧑</div>
-          <div class="player-time" id="pt-parent-time">--:--</div>
+          <div class="player-time" id="pt-parent-time">00:00</div>
+          <button class="primary-btn orange" id="pt-parent-stop-btn" onclick="stopPlayer('parent')" style="width:100%;padding:10px;font-size:14px;margin-top:8px;border-radius:10px">⏹ הגעתי!</button>
           <div class="player-result" id="pt-parent-result"></div>
         </div>
       </div>
@@ -707,7 +787,7 @@
       <div class="timer-controls">
         <button class="primary-btn" id="cd-btn" onclick="handleCountdown()">▶ התחל</button>
         <button class="primary-btn done hidden" id="cd-done-btn" onclick="completeStation()">✓ סיימנו!</button>
-        <button class="secondary-btn" onclick="completeStation()">דלגו — סיימנו ידנית</button>
+        <button class="secondary-btn" onclick="completeStation()">דלגו, סיימנו ידנית</button>
       </div>
     </div>
 
@@ -789,133 +869,131 @@ const STATIONS = [
   {
     id: 'sprint',
     image: 'images/sprint.png',
-    name: 'ספרינט',
-    desc: 'ריצה מהירה מקצה לקצה',
+    name: 'פיק אפ ספרינט',
+    desc: 'מי שיאסוף הכי הרבה, ינצח',
     timerType: 'stopwatch',
     safety: null,
     instructions: {
-      regular: 'מתחילים מהקו. כשנגיד קדימה, רצים עד הקו הבא. חוזרים בהליכה ועושים עוד סיבוב. כל אחד בקצב שלו.',
-      competitive: 'כל אחד בוחר שותף לריצה. יוצאים ביחד בספירה לאחור. מי שמגיע ראשון לקו, מנצח את הסיבוב. עושים 3 סיבובים ורואים מי ניצח הכי הרבה.'
+      regular: 'לוקחים חפץ אחד ועומדים על קו הזינוק. 3, 2, 1, GO! רצים בשיא המהירות עד קו הסיום ומעל המשוכות, מניחים את החפץ בחישוק האיסוף, וחוזרים לסיבוב הבא. נסו לאסוף כמה שיותר חפצים.',
+      competitive: 'בוחרים זמן: 30 שניות או דקה. מי שיאסוף הכי הרבה חפצים בזמן שנבחר, ינצח. רוצים הורה מול ילד? לחצו יאללה. שני שעוני עצר יתחילו ביחד. כל אחד עוצר את שלו ברגע שמגיע לקו.'
     },
-    challenge: 'רוצים אתגר? נסו לרוץ אחורה!',
-    tip: 'ילד קטן? קחו אותו על הכתפיים ורוצו ביחד.'
+    challenge: 'נסו לרוץ אחורה בסיבוב הבא!',
+    tip: 'נסו לרוץ ביחד ולשנות צורות התקדמות: מרוץ חתולים בהליכת ארבע, מרוץ סוסים בדהרות, וכל רעיון שעולה לראש.'
   },
   {
     id: 'boxjump',
     image: 'images/boxjump.png',
-    name: 'בוקס ג\'אמפ',
-    desc: 'עולים למעלה וקופצים למטה',
+    name: 'על גגות תל אביב',
+    desc: 'קופצות מהקופסה',
     timerType: 'free',
-    safety: 'גיל מתחת לשנתיים וחצי — קופסה נמוכה בלבד, הורה אוחז ביד.',
+    safety: 'עמדו קרוב לילדים תמיד ותנו יד בקפיצה ממקום גבוה.',
     instructions: {
-      regular: 'עולים על הקופסה בזהירות, עומדים רגע, וקופצים קדימה לאזור הנחיתה. נוחתים על שתי רגליים ומחייכים. חוזרים על זה כמה פעמים שרוצים.',
-      competitive: 'כל אחד קופץ ומנסה לנחות כמה שיותר רחוק מהקופסה. שמים סמן במקום הנחיתה. מי שקופץ הכי רחוק, הוא האלוף.'
+      regular: 'עולות על הקופסה בזהירות, עומדות רגע, וקופצות קדימה לאזור הנחיתה. נוחתות על שתי רגליים. חוזרות כמה פעמים שרוצות.',
+      competitive: 'קופצות ומנסות לנחות בדיוק בתוך החישוק. כל נחיתה בתוך החישוק = נקודה. מי שמסיימת עם יותר נקודות, היא אלופת הגג.'
     },
-    challenge: 'קפצו, נחתו, ובלי לזוז מהמקום שנחתתם!',
-    tip: 'עמדו ליד ילד קטן עם יד פתוחה, לא אחוזה, בגובה המותניים.'
+    challenge: 'נחתו בדיוק בתוך החישוק!',
+    tip: 'היו קרובות לילדות שלכן. תנו יד בקפיצה ממקום גבוה, כדי לשמור על נחיתה בריאה וטובה.'
   },
   {
     id: 'beam',
     image: 'images/beam.png',
-    name: 'קורה',
-    desc: 'איזון מקצה לקצה',
+    name: 'הבריסטה',
+    desc: 'מגישים קפה בשיא האיזון',
     timerType: 'free',
     safety: null,
     instructions: {
-      regular: 'עוברים לאט מקצה לקצה על הקורה, ידיים בצדדים לאיזון. אם נופלים, חוזרים לנקודה שנפלו ממנה ומנסים שוב.',
-      competitive: 'כמה שניות מחזיקים על הקורה בלי לרדת? ספרו בקול רם ורשמו את השיא. עכשיו תנסו לשבור אותו.'
+      regular: 'מניחים כדור על הצלחת. הולכים לאורך הקורה מקצה לקצה ומניחים את הכדור בכלי האיסוף בקצה. בפעמים הראשונות: רק עם כדור ביד. כשצברת ביטחון, מוסיפים את הצלחת.',
+      competitive: 'כמה הגשות מצליחים לסיים בלי שהכדור יפול? ספרו ביחד בקול. בפעמים הראשונות רק עם כדור ביד, אז מוסיפים את הצלחת.'
     },
-    challenge: 'נסו לעבור את כל הקורה עם עיניים עצומות חצי דרך!',
-    tip: 'אל תאחזו ביד, הניחו יד על הגב בלבד — שהגוף ילמד איזון לבד.'
+    challenge: 'נסו לעבור את הקורה עם הצלחת ועיניים עצומות חצי דרך!',
+    tip: 'עמדו בסוף הקורה ותקבלו את ה\'קפה\'. אל תאחזו ביד. הניחו יד על הגב בלבד.'
   },
   {
     id: 'football',
     image: 'images/football.png',
-    name: 'כדורגל',
-    desc: 'בעיטות לשער',
+    name: 'קורעים רשתות',
+    desc: 'בועטות לשער',
     timerType: 'reps',
     repLabel: 'שערים',
     safety: null,
     instructions: {
-      regular: 'מניחים את הכדור על הנקודה, ובועטים לשער. כל אחד בוחר מאיפה לבעוט, כמה שיותר קרוב אין בעיה. חוזרים כמה פעמים שרוצים.',
-      competitive: 'כל אחד מקבל 5 בעיטות. כל כדור שנכנס = נקודה. מי שמסיים עם יותר נקודות, הוא החלוץ של הסיבוב.'
+      regular: 'מניחות את הכדור על הנקודה ובועטות לשער. בוחרות מאיפה לבעוט. חוזרות כמה פעמים שרוצות.',
+      competitive: 'כל אחת מקבלת 5 בעיטות. כל כדור שנכנס = נקודה. מי שמסיימת עם יותר נקודות, היא חלוצית הסיבוב.'
     },
-    challenge: 'נסו לבעוט רק עם הרגל הפחות חזקה שלכם!',
-    tip: 'הורה בשער ומניח לעבור? זה לא רמאות, זה כיף.'
+    challenge: 'נסו לבעוט רק עם הרגל הפחות חזקה שלכן!',
+    tip: 'הורה בשער ומניחה לעבור? זה לא רמאות, זה כיף.'
   },
   {
     id: 'basketball',
     image: 'images/basketball.png',
-    name: 'כדורסל',
+    name: 'סוויש לסל',
     desc: 'זריקות לסל',
     timerType: 'reps',
     repLabel: 'כניסות',
     safety: null,
     instructions: {
-      regular: 'בוחרים נקודה לעמוד בה, זורקים לסל ומנסים להכניס. כל אחד בוחר את המרחק שנוח לו, אין סיבה לסבול.',
-      competitive: 'עשרה ניסיונות לכל אחד. כל כניסה = נקודה. מנצח מי שמכניס יותר. אפשר לעשות סיבובים חוזרים.'
+      regular: 'בוחרים נקודה לעמוד בה, זורקים לסל ומנסים להכניס. כל אחד בוחר את המרחק שנוח לו.',
+      competitive: 'עשרה ניסיונות לכל אחד. כל כניסה = נקודה. מנצח מי שמכניס יותר.'
     },
     challenge: 'זרקו בלי להסתכל לסל, רק מתוך תחושה!',
-    tip: 'ילד מאוד קטן? הרימו אותו קרוב לסל ותנו לו להטיל.'
+    tip: ''
   },
   {
-    id: 'slambowl',
+    id: 'hopscotch',
     image: 'images/slambowl.png',
-    name: 'סלאם בול',
-    desc: 'זורקים את הכדור חזק לרצפה',
-    timerType: 'countdown',
-    duration: 30,
-    safety: 'לא מתאים לגיל מתחת לשלוש. ילדים קטנים — מניחים את הכדור בעדינות.',
+    name: 'קלאס באפס מאמץ',
+    desc: 'קפיצות בחישוקים ואומנות',
+    timerType: 'stopwatch',
+    safety: null,
     instructions: {
-      regular: 'לוקחים את הכדור, מרימים עד גובה החזה, וזורקים אותו חזק לרצפה. הכדור קופץ בחזרה, תופסים אותו ועושים שוב.',
-      competitive: 'כמה זריקות אפשר לעשות ב-30 שניות? ספרו ביחד בקול רם. מנסים לשבור את השיא בסיבוב הבא.'
+      regular: 'בוחרות צבע וקופצות בחישוקים שמסודרים כמו קלאס. כל פעם שמסיימות את מסלול הקפיצות, מוסיפות קו על הלוח. בסוף ייצא ציור, או קישקוש. כמה פעמים שרוצות.',
+      competitive: 'בכמה זמן אפשר להשלים את מסלול הקלאס? לחצו יאללה ותראו. נסו לשבור את השיא בסיבוב הבא.'
     },
-    challenge: 'זרקו, תפסו, ואל תתנו לכדור לנגוע ברצפה פעמיים!',
-    tip: 'ילד קטן? תנו לו לזרוק מגובה הבטן, זה מספיק חזק בשבילו.'
+    challenge: 'נסו לעבור את המסלול אחורה!',
+    tip: 'קפצו ביחד יד ביד.'
   },
   {
     id: 'creative',
     image: 'images/creative.png',
     name: 'אזור יצירתי',
-    desc: 'כל מה שעולה בראש',
+    desc: 'גוף ודמיון ביחד',
     timerType: 'free',
-    safety: 'בדקו שאין חפצים קטנים לילדים מתחת לגיל שלוש.',
+    safety: null,
     instructions: {
-      regular: 'כאן אין חוקים. יש כלים, יש מרחב. אפשר לבנות, לסדר, לזרוק, לאזן, לשחק כמו שמרגיש נכון לכם עכשיו.',
+      regular: 'כאן המקום לתת לגוף ולדמיון להתחבר. המציאו משחקים ותרגילים כיד הדמיון.',
       competitive: 'תוך 2 דקות, בנו מגדל או מסלול מהחומרים באזור. מי שבנה הכי גבוה, הכי יצירתי, הכי מגניב, הוא המנצח.'
     },
     challenge: 'בנו משהו שאף אחד לא יכול לנחש מה הוא!',
-    tip: 'האזור הזה הוא שלכם. אם ילד יושב ומסדר קוביות בשקט, זה גם פעילות.'
+    tip: 'הקפידו על בטיחות. המשחק על אחריותכם.'
   },
   {
-    id: 'bench',
+    id: 'ladder',
     image: 'images/bench.png',
-    name: 'בנץ פרס',
-    desc: 'לוחצים ביחד',
-    timerType: 'reps',
-    repLabel: 'חזרות',
-    safety: 'מתאים לגיל 5 ומעלה. הורה עומד ליד בכל עת.',
+    name: 'בדרך אל הים',
+    desc: 'סולם זריזות. כל פעם בדרך אחרת',
+    timerType: 'stopwatch',
+    safety: null,
     instructions: {
-      regular: 'שוכבים על הספסל, אוחזים בקצוות, ודוחפים את הגוף מעלה ומטה בקצב רגוע. הורה עומד ליד הראש. ספרו 5 חזרות ביחד בקול רם.',
-      competitive: 'כמה חזרות אפשר לעשות לפני שמפסיקים? ספרו בקול. כשמרגישים שמספיק, מפסיקים. השיא האישי שלכם הוא המטרה.'
+      regular: 'מנסות לעבור בסולם, כל פעם בדרך אחרת: בלי לדרוך על השלבים, בקפיצות, בריצה, בהליכת ארבע, בריצה לאחור, בריצה הצידה, בקפיצות הצידה. המציאו כמה שיותר דרכים מגוונות!',
+      competitive: 'כמה זמן לוקח לעבור את הסולם? לחצו יאללה ותראו. נסו דרכים שונות ושברו את השיא.'
     },
-    challenge: '5 חזרות, 3 שניות לכל חזרה, בקצב שמישהו אחר מכתיב לכם!',
-    tip: 'ילד קטן על הספסל? הניחו ידיים שלו על ידיים שלכם ועשו ביחד.'
+    challenge: 'עברו בלי לדרוך על השלבים בכלל!',
+    tip: 'עברו ביחד. כל אחת בדרך שלה. לא חייבות אותה דרך.'
   },
   {
     id: 'roll',
     image: 'images/roll.png',
-    name: 'גלגול',
-    desc: 'גלגולים קדימה על המזרן',
+    name: 'סושי רול',
+    desc: 'מתגלגלים על הצד כמו סושי',
     timerType: 'reps',
     repLabel: 'גלגולים',
-    safety: 'גלגול על הכתפיים בלבד — לא על הצוואר. מתחת לגיל שנתיים וחצי — תמיכה מלאה של הורה.',
+    safety: 'גלגול על הכתפיים בלבד, לא על הצוואר. מתחת לגיל שנתיים וחצי: תמיכה מלאה של הורה.',
     instructions: {
-      regular: 'מתחילים בעמידה ליד תחילת המזרן, כורעים, מניחים ידיים, ומתגלגלים קדימה בעדינות. קמים בסוף ומחייכים. חוזרים שוב.',
-      competitive: 'כמה גלגולים אפשר לעשות ברצף בלי לעצור? ספרו ביחד. אחרי כל גלגול ממשיכים ישר לבא.'
+      regular: 'שוכבים על הגב, ידיים ישרות מעל הראש, רגליים ישרות, כמו מקל. מתגלגלים על הצד מקו ההתחלה לקו הסיום. כמה פעמים שרוצים.',
+      competitive: 'כמה גלגולים מקצה לקצה אפשר לעשות ברצף בלי לעצור? ספרו ביחד.'
     },
-    challenge: 'גלגלו ואז קומו ישר לעמידה, בלי לעזור עם הידיים!',
-    tip: 'ילד קטן מאוד? שכבו ביחד על המזרן, הניחו ידיים וגלגלו עם הגוף שלכם מתחת לידיים שלהם.'
+    challenge: 'נסו להגיע הכי מהר מקצה לקצה!',
+    tip: 'שכבו ביחד על המזרן וגלגלו ביחד.'
   }
 ];
 
@@ -937,12 +1015,16 @@ let state = {
   completed: new Set(),
   timerRunning: false,
   timerInterval: null,
+  childInterval: null,
+  parentInterval: null,
   timerElapsed: 0,
   countdownRemaining: 60,
   countdownTotal: 60,
   swPhase: 'idle',
   childTime: 0,
   parentTime: 0,
+  childStopped: false,
+  parentStopped: false,
   reps: 0,
   stream: null
 };
@@ -1045,7 +1127,7 @@ function openStation(idx) {
   document.getElementById('detail-desc').textContent = s.desc;
 
   const badge = document.getElementById('mode-badge-display');
-  badge.textContent = state.mode === 'competitive' ? '🔥 מצב תחרות' : '😊 מצב שגרה';
+  badge.textContent = state.mode === 'competitive' ? '🔥 מצב תחרות' : 'מצב רגוע';
   badge.className = 'mode-badge ' + state.mode;
 
   // Safety note
@@ -1067,7 +1149,13 @@ function openStation(idx) {
     cCard.classList.add('hidden');
   }
 
-  document.getElementById('parent-tip-text').textContent = s.tip;
+  const tipBox = document.getElementById('parent-tip-box');
+  if (s.tip) {
+    document.getElementById('parent-tip-text').textContent = s.tip;
+    tipBox.style.display = '';
+  } else {
+    tipBox.style.display = 'none';
+  }
 
   ['timer-stopwatch','timer-countdown','timer-reps','timer-free'].forEach(id => {
     document.getElementById(id).style.display = 'none';
@@ -1094,21 +1182,25 @@ function openStation(idx) {
 // ==============================
 function initStopwatch(s) {
   state.swPhase = 'idle'; state.childTime = 0; state.parentTime = 0; state.timerElapsed = 0;
+  state.childStopped = false; state.parentStopped = false;
   const dual = document.getElementById('dual-timer');
   dual.style.display = state.mode === 'competitive' ? 'flex' : 'none';
   document.getElementById('sw-display').textContent = '00:00';
   document.getElementById('sw-label').textContent = 'לחצו להתחיל';
-  document.getElementById('sw-btn').textContent = '▶ התחל ריצה';
-  document.getElementById('sw-btn').className = 'primary-btn';
+  const swBtn = document.getElementById('sw-btn');
+  swBtn.textContent = state.mode === 'competitive' ? '▶ יאללה! ביחד' : '▶ התחל ריצה';
+  swBtn.className = 'primary-btn' + (state.mode === 'competitive' ? ' orange' : '');
   document.getElementById('sw-done-btn').classList.add('hidden');
   document.getElementById('sw-circle').className = 'timer-circle';
   if (state.mode === 'competitive') {
-    document.getElementById('pt-child-time').textContent = '--:--';
-    document.getElementById('pt-parent-time').textContent = '--:--';
+    document.getElementById('pt-child-time').textContent = '00:00';
+    document.getElementById('pt-parent-time').textContent = '00:00';
     document.getElementById('pt-child-result').textContent = '';
     document.getElementById('pt-parent-result').textContent = '';
-    document.getElementById('pt-child').classList.remove('active-player');
-    document.getElementById('pt-parent').classList.remove('active-player');
+    const cBtn = document.getElementById('pt-child-stop-btn');
+    const pBtn = document.getElementById('pt-parent-stop-btn');
+    if (cBtn) { cBtn.disabled = false; cBtn.textContent = '⏹ הגעתי!'; cBtn.style.background = ''; }
+    if (pBtn) { pBtn.disabled = false; pBtn.textContent = '⏹ הגעתי!'; pBtn.style.background = ''; }
   }
 }
 
@@ -1135,50 +1227,80 @@ function handleStopwatch() {
       doneBtn.classList.remove('hidden');
     }
   } else {
+    // Competitive — שני שעוני עצר סימולטניים
     if (state.swPhase === 'idle') {
-      state.swPhase = 'child-running'; state.timerElapsed = 0; state.timerRunning = true;
-      circle.className = 'timer-circle running';
-      btn.textContent = '⏹ הגענו! (ילד)';
-      document.getElementById('sw-label').textContent = 'ילד רץ!';
-      document.getElementById('pt-child').classList.add('active-player');
-      state.timerInterval = setInterval(() => {
-        state.timerElapsed++;
-        const t = formatTime(state.timerElapsed);
+      state.swPhase = 'running';
+      state.childTime = 0; state.parentTime = 0;
+      state.childStopped = false; state.parentStopped = false;
+      circle.className = 'timer-circle running-competitive';
+      btn.textContent = '↺ התחל מחדש';
+      document.getElementById('sw-label').textContent = 'רצים!';
+      const cBtn = document.getElementById('pt-child-stop-btn');
+      const pBtn = document.getElementById('pt-parent-stop-btn');
+      if (cBtn) { cBtn.disabled = false; cBtn.textContent = '⏹ הגעתי!'; cBtn.style.background = ''; }
+      if (pBtn) { pBtn.disabled = false; pBtn.textContent = '⏹ הגעתי!'; pBtn.style.background = ''; }
+      document.getElementById('pt-child-result').textContent = '';
+      document.getElementById('pt-parent-result').textContent = '';
+      state.childInterval = setInterval(() => {
+        state.childTime++;
+        const t = formatTime(state.childTime);
         document.getElementById('sw-display').textContent = t;
         document.getElementById('pt-child-time').textContent = t;
       }, 1000);
-    } else if (state.swPhase === 'child-running') {
-      clearInterval(state.timerInterval);
-      state.childTime = state.timerElapsed; state.swPhase = 'parent-running'; state.timerElapsed = 0; state.timerRunning = true;
-      document.getElementById('pt-child').classList.remove('active-player');
-      document.getElementById('pt-parent').classList.add('active-player');
-      btn.textContent = '⏹ הגענו! (הורה)';
-      document.getElementById('sw-label').textContent = 'הורה רץ!';
-      state.timerInterval = setInterval(() => {
-        state.timerElapsed++;
-        const t = formatTime(state.timerElapsed);
-        document.getElementById('sw-display').textContent = t;
-        document.getElementById('pt-parent-time').textContent = t;
+      state.parentInterval = setInterval(() => {
+        state.parentTime++;
+        document.getElementById('pt-parent-time').textContent = formatTime(state.parentTime);
       }, 1000);
-    } else if (state.swPhase === 'parent-running') {
-      clearInterval(state.timerInterval);
-      state.parentTime = state.timerElapsed; state.timerRunning = false; state.swPhase = 'done';
+    } else {
+      // Reset
+      clearInterval(state.childInterval);
+      clearInterval(state.parentInterval);
+      state.swPhase = 'idle'; state.childStopped = false; state.parentStopped = false;
       circle.className = 'timer-circle';
-      document.getElementById('pt-parent').classList.remove('active-player');
-      if (state.childTime < state.parentTime) {
-        document.getElementById('pt-child-result').textContent = '🏆 מהיר יותר!';
-        document.getElementById('pt-parent-result').textContent = '💪 כמעט!';
-      } else if (state.parentTime < state.childTime) {
-        document.getElementById('pt-parent-result').textContent = '🏆 מהיר יותר!';
-        document.getElementById('pt-child-result').textContent = '💪 כמעט!';
-      } else {
-        document.getElementById('pt-child-result').textContent = '🤝 תיקו!';
-        document.getElementById('pt-parent-result').textContent = '🤝 תיקו!';
-      }
-      document.getElementById('sw-label').textContent = 'שניהם ניצחו!';
-      btn.textContent = '✓ ראינו!';
-      doneBtn.classList.remove('hidden');
+      btn.textContent = '▶ יאללה! ביחד';
+      btn.className = 'primary-btn orange';
+      document.getElementById('sw-label').textContent = 'לחצו להתחיל';
+      document.getElementById('sw-display').textContent = '00:00';
+      document.getElementById('pt-child-time').textContent = '00:00';
+      document.getElementById('pt-parent-time').textContent = '00:00';
+      document.getElementById('pt-child-result').textContent = '';
+      document.getElementById('pt-parent-result').textContent = '';
+      const cBtn = document.getElementById('pt-child-stop-btn');
+      const pBtn = document.getElementById('pt-parent-stop-btn');
+      if (cBtn) { cBtn.disabled = false; cBtn.textContent = '⏹ הגעתי!'; cBtn.style.background = ''; }
+      if (pBtn) { pBtn.disabled = false; pBtn.textContent = '⏹ הגעתי!'; pBtn.style.background = ''; }
+      doneBtn.classList.add('hidden');
     }
+  }
+}
+
+function stopPlayer(who) {
+  if (who === 'child' && !state.childStopped) {
+    clearInterval(state.childInterval);
+    state.childStopped = true;
+    const btn = document.getElementById('pt-child-stop-btn');
+    if (btn) { btn.disabled = true; btn.textContent = '✓ הגעתי!'; btn.style.background = 'var(--success)'; }
+  } else if (who === 'parent' && !state.parentStopped) {
+    clearInterval(state.parentInterval);
+    state.parentStopped = true;
+    const btn = document.getElementById('pt-parent-stop-btn');
+    if (btn) { btn.disabled = true; btn.textContent = '✓ הגעתי!'; btn.style.background = 'var(--success)'; }
+  }
+  if (state.childStopped && state.parentStopped) {
+    if (state.childTime < state.parentTime) {
+      document.getElementById('pt-child-result').textContent = '🏆 מהיר יותר!';
+      document.getElementById('pt-parent-result').textContent = '💪 כמעט!';
+    } else if (state.parentTime < state.childTime) {
+      document.getElementById('pt-parent-result').textContent = '🏆 מהיר יותר!';
+      document.getElementById('pt-child-result').textContent = '💪 כמעט!';
+    } else {
+      document.getElementById('pt-child-result').textContent = '🤝 תיקו!';
+      document.getElementById('pt-parent-result').textContent = '🤝 תיקו!';
+    }
+    document.getElementById('sw-label').textContent = 'תוצאות! 🎉';
+    document.getElementById('sw-circle').className = 'timer-circle';
+    document.getElementById('sw-done-btn').classList.remove('hidden');
+    state.swPhase = 'done';
   }
 }
 
@@ -1283,7 +1405,7 @@ function closeCelebration() {
 // ==============================
 // CONFETTI
 // ==============================
-const CONFETTI_COLORS = ['#2BBCB3','#F4A261','#FFD700','#FF6B9D','#7ED321'];
+const CONFETTI_COLORS = ['#06B6D4','#F97316','#FFD700','#FF6B9D','#7ED321'];
 function fireConfetti() {
   const c = document.getElementById('confetti-container');
   c.innerHTML = '';
@@ -1301,8 +1423,13 @@ function clearConfetti() { setTimeout(() => { document.getElementById('confetti-
 // ==============================
 function stopAllTimers() {
   clearInterval(state.timerInterval);
+  clearInterval(state.childInterval);
+  clearInterval(state.parentInterval);
   cancelAnimationFrame(cdAnimFrame);
   state.timerRunning = false;
+  state.swPhase = 'idle';
+  state.childStopped = false;
+  state.parentStopped = false;
 }
 function formatTime(s) {
   return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
@@ -1413,11 +1540,14 @@ async function startCapture() {
   const canvas = document.getElementById('cert-canvas');
   const vW = video.videoWidth || 640, vH = video.videoHeight || 480;
 
-  // Certificate canvas: A4-like portrait, good for printing
-  const cW = 900, cH = 1240;
+  // Certificate canvas: portrait, good for sharing and printing
+  const cW = 900, cH = 1150;
   canvas.width = cW; canvas.height = cH;
   const ctx = canvas.getContext('2d');
   ctx.direction = 'rtl';
+
+  // Ensure web fonts are ready for canvas rendering
+  await document.fonts.ready;
 
   // ── BACKGROUND ──
   const bgGrad = ctx.createLinearGradient(0, 0, 0, cH);
@@ -1427,48 +1557,48 @@ async function startCapture() {
   ctx.fillRect(0, 0, cW, cH);
 
   // ── BORDER: outer orange + inner teal ──
-  ctx.strokeStyle = '#F4A261'; ctx.lineWidth = 9;
+  ctx.strokeStyle = '#F97316'; ctx.lineWidth = 9;
   ctx.strokeRect(7, 7, cW - 14, cH - 14);
-  ctx.strokeStyle = '#2BBCB3'; ctx.lineWidth = 3;
+  ctx.strokeStyle = '#06B6D4'; ctx.lineWidth = 3;
   ctx.strokeRect(20, 20, cW - 40, cH - 40);
 
   // ── CORNER STARS ──
   const corners = [[48,48],[cW-48,48],[48,cH-48],[cW-48,cH-48]];
-  corners.forEach(([x,y]) => drawStar(ctx, x, y, 14, '#F4A261'));
+  corners.forEach(([x,y]) => drawStar(ctx, x, y, 14, '#F97316'));
 
   // ── HEADER BAND ──
   const hdrGrad = ctx.createLinearGradient(0, 0, cW, 0);
   hdrGrad.addColorStop(0, '#1A9E96');
-  hdrGrad.addColorStop(0.5, '#2BBCB3');
+  hdrGrad.addColorStop(0.5, '#06B6D4');
   hdrGrad.addColorStop(1, '#1A9E96');
   ctx.fillStyle = hdrGrad;
   ctx.fillRect(0, 0, cW, 140);
 
   // Teal->orange stripe
-  ctx.fillStyle = '#F4A261';
+  ctx.fillStyle = '#F97316';
   ctx.fillRect(0, 140, cW, 7);
 
   // Header text
   ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center';
-  ctx.font = 'bold 50px Arial';
-  ctx.fillText('🌟 תעודת גבורה 🌟', cW / 2, 72);
-  ctx.font = '26px Arial';
+  ctx.font = '58px "Secular One"';
+  ctx.fillText('🏆 תעודת גבורה', cW / 2, 80);
+  ctx.font = '700 22px Heebo';
   ctx.fillStyle = 'rgba(255,255,255,0.88)';
-  ctx.fillText('מושפיט × דיגיטף 2026', cW / 2, 112);
+  ctx.fillText('מושפיט × דיגיטף 2026', cW / 2, 118);
 
   // ── PHOTO AREA ──
-  const photoMargin = 55;
+  const photoMargin = 28;
   const photoW = cW - photoMargin * 2;
   const photoH = Math.round(photoW * (vH / vW));
-  const maxPhotoH = 460;
+  const maxPhotoH = 680;
   const finalPhotoH = Math.min(photoH, maxPhotoH);
   const finalPhotoW = Math.round(finalPhotoH * (vW / vH));
   const photoX = Math.round((cW - finalPhotoW) / 2);
-  const photoY = 170;
+  const photoY = 155;
 
   // Photo shadow
-  ctx.shadowColor = 'rgba(43,188,179,0.3)';
+  ctx.shadowColor = 'rgba(6,182,212,0.3)';
   ctx.shadowBlur = 18; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 6;
   ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(photoX - 10, photoY - 10, finalPhotoW + 20, finalPhotoH + 20);
@@ -1498,49 +1628,38 @@ async function startCapture() {
     ctx.globalCompositeOperation = 'source-over';
   }
 
-  // Photo teal border
-  ctx.strokeStyle = '#2BBCB3'; ctx.lineWidth = 4;
+  // Photo border
+  ctx.strokeStyle = '#06B6D4'; ctx.lineWidth = 4;
   ctx.strokeRect(photoX - 4, photoY - 4, finalPhotoW + 8, finalPhotoH + 8);
-  ctx.strokeStyle = '#F4A261'; ctx.lineWidth = 1.5;
+  ctx.strokeStyle = '#F97316'; ctx.lineWidth = 1.5;
   ctx.strokeRect(photoX - 10, photoY - 10, finalPhotoW + 20, finalPhotoH + 20);
 
   // ── MAIN TEXT ──
-  const textBaseY = photoY + finalPhotoH + 48;
+  const textBaseY = photoY + finalPhotoH + 36;
 
-  // Stars row
-  ctx.fillStyle = '#F4A261';
-  ctx.font = '30px Arial';
-  ctx.textAlign = 'center';
-  ctx.fillText('★  ★  ★  ★  ★', cW / 2, textBaseY);
-
-  // Certificate text
   ctx.fillStyle = '#1A1A1A';
-  ctx.font = 'bold 36px Arial';
-  ctx.fillText('התחזקתי עם מושפיט', cW / 2, textBaseY + 55);
-  ctx.fillText('באירוע דיגיטף 2026', cW / 2, textBaseY + 100);
-
-  // Subtitle
-  ctx.fillStyle = '#2BBCB3';
-  ctx.font = '24px Arial';
-  ctx.fillText('חדר כושר ת"א לקטנטנים', cW / 2, textBaseY + 140);
+  ctx.font = '48px "Secular One"';
+  ctx.textAlign = 'center';
+  ctx.fillText('התחזקתי עם מושפיט', cW / 2, textBaseY + 50);
+  ctx.fillText('באירוע דיגיטף 2026', cW / 2, textBaseY + 103);
 
   // ── DIVIDER ──
-  const divY = textBaseY + 168;
-  ctx.strokeStyle = '#A8DDD9'; ctx.lineWidth = 1;
+  const divY = textBaseY + 133;
+  ctx.strokeStyle = '#67D4E8'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(80, divY); ctx.lineTo(cW - 80, divY); ctx.stroke();
-  drawStar(ctx, cW / 2, divY, 8, '#F4A261');
+  drawStar(ctx, cW / 2, divY, 8, '#F97316');
 
   // Date + website
   ctx.fillStyle = '#888';
-  ctx.font = '19px Arial';
-  ctx.fillText('יוני 2026  |  moshfitkids.com', cW / 2, divY + 32);
+  ctx.font = '400 20px Heebo';
+  ctx.fillText('יוני 2026  |  moshfitkids.com', cW / 2, divY + 34);
 
   // ── FOOTER BAND ──
-  ctx.fillStyle = '#2BBCB3';
+  ctx.fillStyle = '#06B6D4';
   ctx.fillRect(0, cH - 55, cW, 55);
   ctx.fillStyle = '#fff';
-  ctx.font = '17px Arial';
-  ctx.fillText('מושפיט — תנועה, חיבור, שמחה', cW / 2, cH - 20);
+  ctx.font = '400 18px Heebo';
+  ctx.fillText('מושפיט. תנועה, חיבור, שמחה', cW / 2, cH - 20);
 
   // ── SHOW RESULT ──
   lastDataUrl = canvas.toDataURL('image/png');
