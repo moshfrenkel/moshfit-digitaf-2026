@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מושפיט × דיגיטף 2026 — הדפסת QR</title>
+  <title>מושפיט x דיגיטף 2026 — הדפסת QR</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;800;900&family=Heebo:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #f0f0f0;
+      background: #e5e7eb;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      padding: 24px;
       font-family: 'Heebo', sans-serif;
     }
 
@@ -28,16 +29,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20mm 16mm;
+      padding: 18mm 16mm;
       gap: 0;
     }
 
-    /* עיגולי רקע */
     .page::before {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 320px; height: 320px;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
       background: radial-gradient(circle, rgba(6,182,212,0.10), transparent 70%);
       border-radius: 50%;
       pointer-events: none;
@@ -46,7 +46,7 @@
       content: '';
       position: absolute;
       bottom: -60px; left: -60px;
-      width: 260px; height: 260px;
+      width: 280px; height: 280px;
       background: radial-gradient(circle, rgba(236,72,153,0.08), transparent 70%);
       border-radius: 50%;
       pointer-events: none;
@@ -57,26 +57,28 @@
       background: linear-gradient(135deg, #06B6D4, #EC4899);
       color: white;
       border-radius: 99px;
-      padding: 6px 20px;
+      padding: 7px 22px;
       font-family: 'Rubik', sans-serif;
       font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 14px;
+      letter-spacing: 0.07em;
       margin-bottom: 20px;
+      position: relative; z-index: 1;
     }
 
     .mascot-img {
-      width: 200px;
-      height: 200px;
+      width: 190px;
+      height: 190px;
       object-fit: contain;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       mix-blend-mode: multiply;
+      position: relative; z-index: 1;
     }
 
     .headline {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: 38px;
+      font-size: 36px;
       line-height: 1.2;
       text-align: center;
       background: linear-gradient(135deg, #06B6D4 0%, #EC4899 100%);
@@ -84,59 +86,68 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 8px;
+      position: relative; z-index: 1;
     }
 
     .subhead {
       font-family: 'Heebo', sans-serif;
-      font-size: 18px;
+      font-size: 17px;
       color: #6B7280;
       text-align: center;
-      margin-bottom: 32px;
-      line-height: 1.5;
+      margin-bottom: 28px;
+      line-height: 1.55;
+      position: relative; z-index: 1;
     }
 
     .qr-wrap {
       background: white;
       border-radius: 28px;
-      padding: 24px;
+      padding: 20px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       border: 1.5px solid #E5E7EB;
+      position: relative; z-index: 1;
     }
 
-    #qr-canvas {
+    .qr-wrap img {
       display: block;
+      width: 200px;
+      height: 200px;
     }
 
     .scan-label {
       font-family: 'Rubik', sans-serif;
       font-weight: 800;
-      font-size: 22px;
+      font-size: 21px;
       color: #1F2937;
       text-align: center;
       margin-bottom: 8px;
+      position: relative; z-index: 1;
     }
 
     .scan-sub {
       font-family: 'Heebo', sans-serif;
-      font-size: 15px;
-      color: #6B7280;
+      font-size: 16px;
+      color: #374151;
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-width: 340px;
+      position: relative; z-index: 1;
     }
 
     .url-box {
       background: #ECFEFF;
       border: 1.5px solid #06B6D4;
       border-radius: 12px;
-      padding: 10px 20px;
+      padding: 9px 18px;
       font-family: 'Heebo', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       color: #0891B2;
       direction: ltr;
-      margin-bottom: 28px;
-      word-break: break-all;
+      margin-bottom: 24px;
       text-align: center;
+      position: relative; z-index: 1;
     }
 
     .footer-text {
@@ -144,65 +155,57 @@
       font-size: 13px;
       color: #9CA3AF;
       text-align: center;
-      line-height: 1.6;
+      line-height: 1.65;
+      position: relative; z-index: 1;
     }
+    .footer-text strong { color: #06B6D4; font-weight: 700; }
 
-    .footer-text strong {
-      color: #06B6D4;
-      font-weight: 700;
-    }
-
-    /* Print */
     @media print {
-      body { background: white; margin: 0; }
-      .page {
-        width: 210mm;
-        min-height: 297mm;
-        box-shadow: none;
-        margin: 0;
-        page-break-after: always;
-      }
-      .print-btn { display: none; }
+      body { background: white; padding: 0; margin: 0; }
+      .page { box-shadow: none; margin: 0; page-break-after: always; }
+      .print-btn { display: none !important; }
     }
 
     .print-btn {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #F97316;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #F97316, #EC4899);
       color: white;
       border: none;
       border-radius: 20px;
-      padding: 14px 32px;
+      padding: 14px 36px;
       font-family: 'Rubik', sans-serif;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 17px;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(249,115,22,0.35);
-      z-index: 10;
+      box-shadow: 0 4px 20px rgba(249,115,22,0.30);
     }
   </style>
 </head>
 <body>
 
 <div class="page">
-  <div class="brand-tag">מושפיט × דיגיטף 2026</div>
+  <div class="brand-tag">מושפיט x דיגיטף 2026</div>
 
   <img class="mascot-img"
        src="images/mascot.png"
        onerror="this.src='images/mascot.jpg'"
        alt="מושפיטר">
 
-  <h1 class="headline">9 תחנות. הרבה כיף.</h1>
-  <p class="subhead">פעילות תנועה להורים וילדים<br>כניסה חינמית לכל מי שסורק</p>
+  <h1 class="headline">9 תחנות. המון כיף.</h1>
+
+  <p class="subhead">
+    פעילות תנועה משותפת לכל המשפחה<br>
+    כניסה חינמית, ללא הורדה
+  </p>
 
   <div class="qr-wrap">
-    <canvas id="qr-canvas"></canvas>
+    <img src="data:image/png;base64,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" alt="QR code לאפליקציית מושפיט דיגיטף">
   </div>
 
-  <p class="scan-label">סרקו עם הטלפון</p>
-  <p class="scan-sub">מצלמה רגילה מספיקה. אין צורך בהורדה.</p>
+  <p class="scan-label">סרקו את הברקוד</p>
+  <p class="scan-sub">
+    כדי להיכנס לאפליקציה שתדריך אתכם<br>בכל תחנות הפעילות
+  </p>
 
   <div class="url-box">moshfrenkel.github.io/moshfit-digitaf-2026</div>
 
@@ -214,20 +217,5 @@
 
 <button class="print-btn" onclick="window.print()">הדפסת דף A4</button>
 
-<script>
-  const URL = 'https://moshfrenkel.github.io/moshfit-digitaf-2026/';
-  QRCode.toCanvas(
-    document.getElementById('qr-canvas'),
-    URL,
-    {
-      width: 220,
-      margin: 2,
-      color: { dark: '#0E7490', light: '#FFFFFF' }
-    },
-    function(err) {
-      if (err) console.error(err);
-    }
-  );
-</script>
 </body>
 </html>
