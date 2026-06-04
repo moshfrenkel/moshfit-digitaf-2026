@@ -699,7 +699,7 @@
   <div class="mode-section">
     <div class="mode-label">בחרו את המצב שלכם</div>
     <div class="mode-toggle">
-      <button class="mode-btn active" id="btn-regular" onclick="setMode('regular')">רגוע</button>
+      <button class="mode-btn active" id="btn-regular" onclick="setMode('regular')">צ'יל</button>
       <button class="mode-btn competitive" id="btn-competitive" onclick="setMode('competitive')">תחרות</button>
     </div>
     <p class="mode-desc" id="mode-desc">כל תחנה עם הוראות פשוטות לכל הגילאים</p>
@@ -796,7 +796,7 @@
   </div>
 
   <div class="station-body">
-    <div class="mode-badge regular" id="mode-badge-display">מצב רגוע</div>
+    <div class="mode-badge regular" id="mode-badge-display">מצב צ'יל</div>
 
     <div class="safety-card hidden" id="safety-card">
       <span id="safety-text"></span>
@@ -1010,11 +1010,11 @@ const STATIONS = [
     id: 'hopscotch',
     image: 'images/slambowl.png',
     name: 'קלאס באפס מאמץ',
-    desc: 'קפיצות בחישוקים ואומנות',
+    desc: 'קפיצות בחישוקים ואטבי צבע',
     timerType: 'stopwatch',
     safety: null,
     instructions: {
-      regular: 'בוחרות צבע וקופצות בחישוקים שמסודרים כמו קלאס. כל פעם שמסיימות את מסלול הקפיצות, מוסיפות קו על הלוח. בסוף ייצא ציור, או קישקוש. כמה פעמים שרוצות.',
+      regular: 'בתחילת כל סיבוב לוקחים אטב צבעוני. קופצים בחישוקים שמסודרים כמו קלאס. בסוף המסלול, תולים את האטב על הגומי. כמה פעמים שרוצים.',
       competitive: 'בכמה זמן אפשר להשלים את מסלול הקלאס? לחצו יאללה ותראו. נסו לשבור את השיא בסיבוב הבא.'
     },
     challenge: 'נסו לעבור את המסלול אחורה!',
@@ -1195,7 +1195,7 @@ function openStation(idx) {
   document.getElementById('detail-desc').textContent = s.desc;
 
   const badge = document.getElementById('mode-badge-display');
-  badge.textContent = state.mode === 'competitive' ? 'מצב תחרות' : 'מצב רגוע';
+  badge.textContent = state.mode === 'competitive' ? 'מצב תחרות' : "מצב צ'יל";
   badge.className = 'mode-badge ' + state.mode;
 
   // Safety note
