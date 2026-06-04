@@ -707,19 +707,54 @@
 
 <!-- PRIVACY MODAL -->
 <div id="privacy-modal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;display:flex;align-items:flex-end;justify-content:center;">
-  <div style="background:#fff;width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:28px 22px 36px;max-height:80vh;overflow-y:auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <span style="font-family:'Rubik',sans-serif;font-weight:800;font-size:18px;color:#1F2937;">הצהרת פרטיות</span>
+  <div style="background:#fff;width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:28px 22px 36px;max-height:85vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+      <span style="font-family:'Rubik',sans-serif;font-weight:800;font-size:18px;color:#1F2937;">מדיניות פרטיות</span>
       <button onclick="document.getElementById('privacy-modal').classList.add('hidden')"
-        style="background:none;border:none;font-size:22px;cursor:pointer;color:#6B7280;line-height:1;">✕</button>
+        style="background:none;border:none;font-size:22px;cursor:pointer;color:#6B7280;line-height:1;min-height:44px;min-width:44px;">✕</button>
     </div>
-    <div style="font-family:'Heebo',sans-serif;font-size:15px;line-height:1.7;color:#374151;display:flex;flex-direction:column;gap:12px;">
-      <p><strong style="color:#1F2937;">אין איסוף מידע אישי.</strong> אפליקציה זו אינה אוספת, שומרת או מעבירה שום מידע אישי לשום שרת.</p>
-      <p><strong style="color:#1F2937;">שימוש במצלמה.</strong> המצלמה נפתחת בלבד לצורך יצירת תעודה מקומית. התמונה נוצרת ונשמרת ישירות במכשיר שלך ואינה נשלחת לשום מקום.</p>
-      <p><strong style="color:#1F2937;">אין עוגיות (Cookies).</strong> האפליקציה אינה משתמשת בעוגיות, בניתוח גלישה (Analytics) או במעקב אחר משתמשים.</p>
-      <p><strong style="color:#1F2937;">גופנים חיצוניים.</strong> האפליקציה טוענת גופנים משרת Google Fonts. טעינה זו אנונימית לחלוטין ואינה כוללת מידע מזהה.</p>
-      <p><strong style="color:#1F2937;">שמירת נתונים.</strong> כל מידע שנוצר (כולל תמונות) שמור בלעדית במכשיר המשתמש ואינו בשליטת מושפיט.</p>
-      <p style="color:#9CA3AF;font-size:13px;">בהתאם לחוק הגנת הפרטיות, תשמ"א-1981 ותיקוניו. לשאלות: mfrenkel5@gmail.com</p>
+    <p style="font-family:'Heebo',sans-serif;font-size:12px;color:#9CA3AF;margin-bottom:18px;">עדכון אחרון: יוני 2026 | לפי חוק הגנת הפרטיות תשמ"א-1981 ותיקון 13 (בתוקף מאוגוסט 2025)</p>
+
+    <div style="font-family:'Heebo',sans-serif;font-size:15px;line-height:1.75;color:#374151;display:flex;flex-direction:column;gap:14px;">
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">בעל מסד הנתונים</strong>
+        מוש פרנקל, מושפיט. לפניות: mfrenkel5@gmail.com
+      </div>
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">מה נאסף ועל ידי מי</strong>
+        האפליקציה עצמה אינה אוספת, שומרת או מעבירה שום מידע אישי. עם זאת, האפליקציה מתארחת על GitHub Pages (חברת Microsoft). <strong>GitHub רושמת ומאחסנת כתובות IP של מבקרים</strong> לצורכי אבטחה, יחד עם סוג הדפדפן, שעת הגישה וכתובת הדף הנצפה. כתובת IP מהווה מידע אישי לפי תיקון 13. מדיניות הפרטיות של GitHub זמינה בכתובת: docs.github.com/privacy
+      </div>
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">שיתוף מידע על ידי GitHub</strong>
+        GitHub עשויה לשתף מידע עם גורמי אכיפת חוק בצו שיפוטי, ועם חברות בנות של Microsoft לפי עדכון מדיניותה ממרץ 2026. אנו אין לנו גישה ללוגים אלה ולא נשתף אותם.
+      </div>
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">שימוש במצלמה</strong>
+        המצלמה נפתחת אך ורק בעמוד התעודה, לצורך צילום מקומי בלבד. התמונה נוצרת ונשמרת ישירות במכשירך ואינה מועברת לשרת כלשהו. לא מאוחסן שום נתון ביומטרי.
+      </div>
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">גופנים חיצוניים</strong>
+        האפליקציה טוענת גופנים משרתי Google Fonts. הטעינה כוללת כתובת IP ועשויה להיות מתועדת על ידי Google.
+      </div>
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">אין עוגיות, אין מעקב</strong>
+        האפליקציה אינה משתמשת בעוגיות, ניתוח גלישה (Analytics), פרסום ממוקד, או כל מנגנון מעקב אחר.
+      </div>
+
+      <div>
+        <strong style="color:#1F2937;display:block;margin-bottom:3px;">זכויותיך</strong>
+        לפי תיקון 13 לחוק הגנת הפרטיות, זכאי/ת לעיין במידע שנאסף עליך, לבקש תיקונו, מחיקתו, או להתנגד לשימוש בו. לפניות: mfrenkel5@gmail.com. לתלונות: הרשות להגנת הפרטיות — www.gov.il/ppa
+      </div>
+
+      <p style="color:#9CA3AF;font-size:13px;border-top:1px solid #E5E7EB;padding-top:12px;">
+        מסמך זה נכתב בהתאם לחוק הגנת הפרטיות תשמ"א-1981 ותיקון 13 שנכנס לתוקף ב-14 באוגוסט 2025. אין בו ייעוץ משפטי.
+      </p>
     </div>
   </div>
 </div>
